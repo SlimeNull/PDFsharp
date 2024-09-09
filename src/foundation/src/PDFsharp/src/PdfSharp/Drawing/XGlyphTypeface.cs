@@ -546,7 +546,7 @@ namespace PdfSharp.Drawing
             string faceName = wpfGlyphTypeface.FaceNames[FontHelper.CultureInfoEnUs];
             string familyName = wpfGlyphTypeface.FamilyNames[FontHelper.CultureInfoEnUs];
 
-            string name = familyName.ToLower() + '/' + faceName.ToLower;
+            string name = familyName.ToLower() + '/' + faceName.ToLowerInvariant();
             string style = wpfGlyphTypeface.Style.ToString();
             string simulations = wpfGlyphTypeface.StyleSimulations.ToString();
 #endif
