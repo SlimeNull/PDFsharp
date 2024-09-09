@@ -2,9 +2,7 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Text;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Security;
 
 namespace PdfSharp.Pdf.Internal
@@ -585,7 +583,7 @@ namespace PdfSharp.Pdf.Internal
 
                 default:
                     Debug.Assert(false, "Cannot come here.");
-                    PdfSharpLogHost.Logger.LogError("Render a color with invalid color mode.");
+                    // PdfSharpLogHost.Logger.LogError("Render a color with invalid color mode.");
                     goto case PdfColorMode.Rgb;
             }
         }

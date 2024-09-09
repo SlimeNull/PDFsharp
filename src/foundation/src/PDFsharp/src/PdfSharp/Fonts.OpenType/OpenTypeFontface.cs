@@ -16,12 +16,10 @@ using WpfFontFamily = System.Windows.Media.FontFamily;
 using WpfTypeface = System.Windows.Media.Typeface;
 using WpfGlyphTypeface = System.Windows.Media.GlyphTypeface;
 #endif
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 //using PdfSharp.Internal;
 //using PdfSharp.Fonts;
 using PdfSharp.Fonts.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf;
 using Fixed = System.Int32;
 using FWord = System.Int16;
@@ -125,12 +123,12 @@ namespace PdfSharp.Fonts.OpenType
             if (fontEmbedding == PdfFontEmbedding.TryComputeSubset)
             {
                 // Case: _fontEmbedding is already set to EmbedCompleteFontFile.
-                PdfSharpLogHost.Logger.LogError("Font embedding option was already set to EmbedCompleteFontFile. Setting to TryComputeSubset is ignored.");
+                // PdfSharpLogHost.Logger.LogError("Font embedding option was already set to EmbedCompleteFontFile. Setting to TryComputeSubset is ignored.");
             }
             else
             {
                 // Case: _fontEmbedding is already set to TryComputeSubset.
-                PdfSharpLogHost.Logger.LogError("Font embedding option was already set to TryComputeSubset. Now it is reset to EmbedCompleteFontFile.");
+                // PdfSharpLogHost.Logger.LogError("Font embedding option was already set to TryComputeSubset. Now it is reset to EmbedCompleteFontFile.");
                 _fontEmbedding = fontEmbedding;
             }
         }
@@ -386,7 +384,7 @@ namespace PdfSharp.Fonts.OpenType
             }
             catch (Exception ex)
             {
-                PdfSharpLogHost.FontManagementLogger.LogCritical($"Error while reading OpenType font face: {ex.Message}");
+                // PdfSharpLogHost.FontManagementLogger.LogCritical($"Error while reading OpenType font face: {ex.Message}");
                 throw;
             }
         }

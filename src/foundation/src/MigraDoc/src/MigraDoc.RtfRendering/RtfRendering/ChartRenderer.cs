@@ -3,13 +3,11 @@
 
 using System.Diagnostics;
 using System.Drawing;
-using Microsoft.Extensions.Logging;
 #if !NETSTANDARD2_0_OR_GREATER
 using System.Drawing.Imaging;
 #endif
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
-using MigraDoc.Logging;
 #if GDI
 using PdfSharp.Drawing;
 using PdfSharp.Events;
@@ -48,7 +46,7 @@ namespace MigraDoc.RtfRendering
 
             if (DocumentRelations.GetParent(_chart) is DocumentElements elms && !renderInParagraph && !(DocumentRelations.GetParent(elms) is Section || DocumentRelations.GetParent(elms) is HeaderFooter))
             {
-                MigraDocLogHost.RtfRenderingLogger.LogWarning(MdRtfMsgs.ChartFreelyPlacedInWrongContext.Message);
+//                 MigraDocLogHost.RtfRenderingLogger.LogWarning(MdRtfMsgs.ChartFreelyPlacedInWrongContext.Message);
                 //Debug.WriteLine(Messages2.ChartFreelyPlacedInWrongContext, "warning");
                 return;
             }
@@ -333,7 +331,7 @@ namespace MigraDoc.RtfRendering
             }
             catch
             {
-                MigraDocLogHost.RtfRenderingLogger.LogError("Chart image file not read");
+//                 MigraDocLogHost.RtfRenderingLogger.LogError("Chart image file not read");
                 //Debug.WriteLine("Chart image file not read", "warning");
             }
             finally

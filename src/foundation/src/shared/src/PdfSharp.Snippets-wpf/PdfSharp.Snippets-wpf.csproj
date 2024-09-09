@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;net8.0-windows;net462</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net8.0-windows;net45;net46;net462;net47;net48</TargetFrameworks>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RootNamespace>PdfSharp.Snippets</RootNamespace>
     <UseWPF>true</UseWPF>
@@ -76,7 +76,32 @@
     <EmbeddedResource Include="..\..\..\..\..\..\assets\pdfsharp-6.x\fonts\SampleFonts\xfiles.ttf" Link="assets\fonts\xfiles.ttf" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    <PackageReference Include="BouncyCastle.Cryptography" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <PackageReference Include="System.Security.Cryptography.Pkcs" />
     <PackageReference Include="BouncyCastle.Cryptography" />
   </ItemGroup>

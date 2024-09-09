@@ -20,12 +20,10 @@ using WpfStyleSimulations = System.Windows.Media.StyleSimulations;
 #if WUI
 using Windows.UI.Xaml.Media;
 #endif
-using Microsoft.Extensions.Logging;
 using PdfSharp.Fonts;
 using PdfSharp.Fonts.Internal;
 using PdfSharp.Fonts.OpenType;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Drawing
 {
@@ -160,7 +158,7 @@ namespace PdfSharp.Drawing
                 }
                 catch // (Exception ex)
                 {
-                    PdfSharpLogHost.Logger.LogError(message);
+                    // PdfSharpLogHost.Logger.LogError(message);
                 }
 
                 if (fontResolverInfo == null)
@@ -172,7 +170,7 @@ namespace PdfSharp.Drawing
                     }
                     catch // (Exception ex)
                     {
-                        PdfSharpLogHost.Logger.LogError(message);
+                        // PdfSharpLogHost.Logger.LogError(message);
                     }
                 }
 
@@ -548,7 +546,7 @@ namespace PdfSharp.Drawing
             string faceName = wpfGlyphTypeface.FaceNames[FontHelper.CultureInfoEnUs];
             string familyName = wpfGlyphTypeface.FamilyNames[FontHelper.CultureInfoEnUs];
 
-            string name = familyName.ToLower() + '/' + faceName.ToLowerInvariant();
+            string name = familyName.ToLower() + '/' + faceName.ToLower;
             string style = wpfGlyphTypeface.Style.ToString();
             string simulations = wpfGlyphTypeface.StyleSimulations.ToString();
 #endif
@@ -596,7 +594,7 @@ namespace PdfSharp.Drawing
         // ReSharper disable UnusedMember.Local
         internal string DebuggerDisplay
             // ReSharper restore UnusedMember.Local
-            => Invariant($"{FamilyName} - {StyleName} ({FaceName})");
+            => $"{FamilyName} - {StyleName} ({FaceName})";
     }
 }
 

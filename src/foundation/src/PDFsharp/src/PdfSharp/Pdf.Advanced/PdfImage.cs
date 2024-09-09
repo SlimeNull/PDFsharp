@@ -8,10 +8,8 @@ using System.Drawing.Imaging;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 #endif
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Filters;
 
 namespace PdfSharp.Pdf.Advanced
@@ -639,7 +637,7 @@ namespace PdfSharp.Pdf.Advanced
                     // #PDF-A
                     if (_document.IsPdfA)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("PDF/A: Alpha mask of PdfImage suppressed.");
+                        // PdfSharpLogHost.Logger.LogWarning("PDF/A: Alpha mask of PdfImage suppressed.");
                     }
                     else
                     {
@@ -764,7 +762,7 @@ namespace PdfSharp.Pdf.Advanced
                     // #PDF-A
                     if (_document.IsPdfA)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
+                        // PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
                     }
                     else
                     {
@@ -808,7 +806,7 @@ namespace PdfSharp.Pdf.Advanced
                 // #PDF-A
                 if (_document.IsPdfA)
                 {
-                    PdfSharpLogHost.Logger.LogWarning("PDF/A: Alpha mask of PdfImage suppressed.");
+                    // PdfSharpLogHost.Logger.LogWarning("PDF/A: Alpha mask of PdfImage suppressed.");
                 }
                 else
                 {
@@ -845,7 +843,7 @@ namespace PdfSharp.Pdf.Advanced
                 // #PDF-A
                 if (_document.IsPdfA)
                 {
-                    PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
+                    // PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
                 }
                 else
                 {
@@ -1025,7 +1023,7 @@ namespace PdfSharp.Pdf.Advanced
                     // #PDF-A
                     if (_document.IsPdfA)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("PDF/A: Alpha mask of PdfImage suppressed.");
+                        // PdfSharpLogHost.Logger.LogWarning("PDF/A: Alpha mask of PdfImage suppressed.");
                     }
                     else
                     {
@@ -1062,7 +1060,7 @@ namespace PdfSharp.Pdf.Advanced
                     // #PDF-A
                     if (_document.IsPdfA)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
+                        // PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
                     }
                     else
                     {
@@ -1473,7 +1471,7 @@ namespace PdfSharp.Pdf.Advanced
                     // #PDF-A
                     if (_document.IsPdfA)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
+                        // PdfSharpLogHost.Logger.LogWarning("PDF/A: Image interpolation suppressed.");
                     }
                     else
                     {

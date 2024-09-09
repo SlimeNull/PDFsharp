@@ -146,7 +146,7 @@ namespace MigraDoc.Rendering
                     {
                         if (_phase == Phase.Formatting)
                             return "XX";
-                        return MdPdfMsgs.BookmarkNotDefined(pageRefField.Name).Message;
+                        return MdPdfMsgs.BookmarkNotDefined(pageRefField.Name);
                     }
                 }
                 else if (field is SectionField)

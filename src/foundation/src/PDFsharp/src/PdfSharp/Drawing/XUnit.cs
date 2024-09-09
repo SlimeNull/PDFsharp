@@ -2,8 +2,6 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.ComponentModel;
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Drawing
 {
@@ -280,7 +278,7 @@ namespace PdfSharp.Drawing
             // #DELETE 2024-12-31 - Replace this special treatment for German numbers with an exception.
             if (value.Contains(','))
             {
-                PdfSharpLogHost.Logger.LogError("A number string contains an illegal ','. It is replaced by '.'. Will throw exception in the future.");
+                // PdfSharpLogHost.Logger.LogError("A number string contains an illegal ','. It is replaced by '.'. Will throw exception in the future.");
                 value = value.Replace(',', '.');
             }
 
@@ -302,7 +300,7 @@ namespace PdfSharp.Drawing
             catch (Exception ex)
             {
                 unit.Value = 1;
-                string message = Invariant($"String '{value}' is not a valid value for structure 'XUnit'.");
+                string message = $"String '{value}' is not a valid value for structure 'XUnit'.";
                 throw new ArgumentException(message, ex);
             }
 
@@ -532,7 +530,7 @@ namespace PdfSharp.Drawing
         /// </summary>
         /// <value>The debugger display.</value>
         // ReSharper disable UnusedMember.Local
-        string DebuggerDisplay => Invariant($"{Value:0.######} {GetSuffix()}");
+        string DebuggerDisplay => $"{Value:0.######} {GetSuffix()}";
         // ReSharper restore UnusedMember.Local
     }
 }

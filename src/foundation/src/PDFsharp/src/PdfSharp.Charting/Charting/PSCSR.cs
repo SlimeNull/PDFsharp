@@ -13,12 +13,12 @@ namespace PdfSharp.Charting
     class PSCSR
     {
         internal static string InvalidChartTypeForCombination(ChartType chartType) 
-            => Invariant($"ChartType '{chartType}' not valid for combination of charts.");
+            => $"ChartType '{chartType}' not valid for combination of charts.";
 
         internal static string PercentNotSupportedByColumnDataLabel 
             => "Column data label cannot be set to 'Percent'.";
 
         public static string RenderInfoNotInitialized(Type type)
-            => Invariant($"RenderInfo '{type.Name}' is not fully initialized.");
+            => $"RenderInfo '{type.Name}' is not fully initialized.";
     }
 }

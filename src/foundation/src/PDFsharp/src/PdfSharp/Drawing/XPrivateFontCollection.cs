@@ -3,7 +3,6 @@
 
 #if GDI
 using System.Runtime.InteropServices;
-using PdfSharp.Logging;
 using GdiFontFamily = System.Drawing.FontFamily;
 using GdiFont = System.Drawing.Font;
 using GdiFontStyle = System.Drawing.FontStyle;
@@ -15,7 +14,6 @@ using WpfFontFamily = System.Windows.Media.FontFamily;
 using WpfTypeface = System.Windows.Media.Typeface;
 using WpfGlyphTypeface = System.Windows.Media.GlyphTypeface;
 #endif
-using Microsoft.Extensions.Logging;
 using PdfSharp.Fonts;
 using PdfSharp.Fonts.Internal;
 

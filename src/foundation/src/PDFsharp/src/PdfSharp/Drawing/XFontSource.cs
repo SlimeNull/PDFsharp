@@ -137,7 +137,7 @@ namespace PdfSharp.Drawing
             //    "ReadFontBytesFromGdi failed: " + gdiFont.Name + ": " + error + ", size: " + size + ", isTtcf: " + isTtcf);
             if (!(error == 0 || error == 127 || error == 2 && size > 10_000 && isTtcf == false))
             {
-                var message = Invariant($"Error while reading GDI FontData: error: {error}, bytes read: {size}");
+                var message = $"Error while reading GDI FontData: error: {error}, bytes read: {size}";
             }
 #endif
             if (size == 0)

@@ -22,8 +22,8 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Initializes a new instance of the DdlParserException class with the specified message and the
         /// inner exception.
         /// </summary>
-        public DdlParserException(MdDomMsg domMsg, Exception? innerException = null)
-            : base(domMsg.Message, innerException)
+        public DdlParserException(string domMsg, Exception? innerException = null)
+            : base(domMsg, innerException)
         {
             Error = new DdlReaderError(DdlErrorLevel.Error, domMsg);
         }

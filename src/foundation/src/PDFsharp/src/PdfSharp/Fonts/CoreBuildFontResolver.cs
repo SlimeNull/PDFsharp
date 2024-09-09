@@ -161,10 +161,10 @@ namespace PdfSharp.Fonts
             var baseFamily = TypefaceInfos.FirstOrDefault();
 
             if (isBold)
-                typefaces = typefaces.Where(f => f.FontFaceName.Contains("bold", StringComparison.OrdinalIgnoreCase) || f.FontFaceName.Contains("heavy", StringComparison.OrdinalIgnoreCase));
+                typefaces = typefaces.Where(f => f.FontFaceName.Contains("bold") || f.FontFaceName.Contains("heavy"));
 
             if (isItalic)
-                typefaces = typefaces.Where(f => f.FontFaceName.Contains("italic", StringComparison.OrdinalIgnoreCase) || f.FontFaceName.Contains("oblique", StringComparison.OrdinalIgnoreCase));
+                typefaces = typefaces.Where(f => f.FontFaceName.Contains("italic") || f.FontFaceName.Contains("oblique"));
 
             var family = typefaces.FirstOrDefault();
 #if true

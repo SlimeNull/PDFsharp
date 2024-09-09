@@ -2,8 +2,6 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Globalization;
-using Microsoft.Extensions.Logging;
-using MigraDoc.Logging;
 
 namespace MigraDoc.Rendering
 {
@@ -28,7 +26,7 @@ namespace MigraDoc.Rendering
         {
             if (Math.Abs(number) > 32768)
             {
-                MigraDocLogHost.PdfRenderingLogger.LogWarning(MdPdfMsgs.NumberTooLargeForRoman(number).Message);
+//                 MigraDocLogHost.PdfRenderingLogger.LogWarning(MdPdfMsgs.NumberTooLargeForRoman(number).Message);
                 //Debug.WriteLine(Messages2.NumberTooLargeForRoman(number), "warning");
                 return number.ToString(CultureInfo.InvariantCulture);
             }
@@ -64,7 +62,7 @@ namespace MigraDoc.Rendering
         {
             if (Math.Abs(number) > 32768)
             {
-                MigraDocLogHost.PdfRenderingLogger.LogWarning(MdPdfMsgs.NumberTooLargeForLetters(number).Message);
+//                 MigraDocLogHost.PdfRenderingLogger.LogWarning(MdPdfMsgs.NumberTooLargeForLetters(number).Message);
                 //Debug.WriteLine(Messages2.NumberTooLargeForLetters(number));
                 return number.ToString();
             }

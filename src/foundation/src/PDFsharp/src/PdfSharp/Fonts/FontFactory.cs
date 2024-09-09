@@ -20,8 +20,6 @@ using PdfSharp.Fonts.Internal;
 using PdfSharp.Fonts.OpenType;
 using PdfSharp.Internal;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 
 // Re-Sharper disable RedundantNameQualifier
 
@@ -202,7 +200,7 @@ namespace PdfSharp.Fonts
                                 $"{(fontResolvingOptions.IsItalic ? " italic" : "")}{(fontResolvingOptions.IsBold ? " bold" : "")}' " +
                                 $"the face name '{fontResolverInfo.FaceName}', but returned no bytes for this name. " +
                                 "This is most likely a bug in your font resolver.";
-                            PdfSharpLogHost.Logger.LogCritical(message);
+                            // PdfSharpLogHost.Logger.LogCritical(message);
                             throw new InvalidOperationException(message);
                         }
 

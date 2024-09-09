@@ -137,7 +137,7 @@ namespace PdfSharp.Pdf.Advanced
             LastChar = 255;
             PdfArray width = Widths;
 #if DEBUG
-            width.Comment = Invariant($"Width array[{FirstChar}..{LastChar}] of {typeof(PdfTrueTypeFont)} object {ObjectID}");
+            width.Comment = $"Width array[{FirstChar}..{LastChar}] of {typeof(PdfTrueTypeFont)} object {ObjectID}";
 #endif
             //width.Elements.Clear();
             for (int idx = 32; idx < 256; idx++)

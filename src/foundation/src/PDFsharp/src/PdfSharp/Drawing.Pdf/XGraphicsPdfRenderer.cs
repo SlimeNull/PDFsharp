@@ -4,7 +4,6 @@
 #define ITALIC_SIMULATION
 
 using System.Text;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Events;
 using PdfSharp.Fonts.Internal;
 #if GDI
@@ -22,7 +21,6 @@ using SysSize = Windows.Foundation.Size;
 #endif
 using PdfSharp.Fonts.OpenType;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.Internal;

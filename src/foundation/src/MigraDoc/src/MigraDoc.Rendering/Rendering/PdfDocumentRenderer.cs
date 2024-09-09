@@ -93,7 +93,7 @@ namespace MigraDoc.Rendering
         void PrepareDocumentRenderer(bool prepareCompletely)
         {
             if (_document == null)
-                throw new InvalidOperationException(MdPdfMsgs.PropertyNotSetBefore(nameof(Document), MethodBase.GetCurrentMethod()!.Name).Message);
+                throw new InvalidOperationException(MdPdfMsgs.PropertyNotSetBefore(nameof(Document), MethodBase.GetCurrentMethod()!.Name));
 
             _documentRenderer ??= new(_document)
             {

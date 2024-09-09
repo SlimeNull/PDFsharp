@@ -2,9 +2,7 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Text;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Pdf.Content
 {
@@ -192,7 +190,7 @@ namespace PdfSharp.Pdf.Content
 
                     static char LogError(char ch)
                     {
-                        PdfSharpLogHost.Logger.LogError("Illegal character {char} in hex string.", ch);
+                        // PdfSharpLogHost.Logger.LogError("Illegal character {char} in hex string.", ch);
                         return '\0';
                     }
                 }
@@ -679,7 +677,7 @@ namespace PdfSharp.Pdf.Content
 
             static char LogError(char ch)
             {
-                PdfSharpLogHost.Logger.LogError("Illegal character '{char}' in hex string.", ch);
+                // PdfSharpLogHost.Logger.LogError("Illegal character '{char}' in hex string.", ch);
                 return '\0';
             }
         }

@@ -1,9 +1,7 @@
 ﻿// PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Advanced;
 using PdfSharp.Pdf.Internal;
 
@@ -35,9 +33,9 @@ namespace PdfSharp.Pdf.IO
     /// </summary>
     public sealed class PdfReader
     {
-        PdfReader(ILogger? logger, PdfReaderOptions? options)
+        PdfReader(PdfReaderOptions? options)
         {
-            _logger = logger ?? PdfSharpLogHost.PdfReadingLogger;
+            //_logger = logger ?? PdfSharpLogHost.PdfReadingLogger;
             _options = options ?? new();
         }
 
@@ -185,7 +183,7 @@ namespace PdfSharp.Pdf.IO
         public static PdfDocument Open(string path, string? password, PdfDocumentOpenMode openMode,
             PdfPasswordProvider? passwordProvider, PdfReaderOptions? options = null)
         {
-            var reader = new PdfReader(null, options);
+            var reader = new PdfReader(options);
             var document = reader.OpenFromFile(path, password, openMode, passwordProvider);
             return document;
         }
@@ -234,7 +232,7 @@ namespace PdfSharp.Pdf.IO
         public static PdfDocument Open(Stream stream, string? password, PdfDocumentOpenMode openMode,
             PdfPasswordProvider? passwordProvider, PdfReaderOptions? options = null)
         {
-            var reader = new PdfReader(null, options);
+            var reader = new PdfReader(options);
             var document = reader.OpenFromStream(stream, password, openMode, passwordProvider);
             return document;
         }
@@ -258,7 +256,7 @@ namespace PdfSharp.Pdf.IO
             }
             catch (Exception ex)
             {
-                PdfSharpLogHost.Logger.LogError(ex, "Open a PDF document failed.");
+                // PdfSharpLogHost.Logger.LogError(ex, "Open a PDF document failed.");
                 throw;
             }
             return document!;
@@ -278,7 +276,7 @@ namespace PdfSharp.Pdf.IO
                         $"PDF document with size {stream.Length} cannot be opened with a 32-bit size type. " +
                         "Recompile PDFsharp with USE_LONG_SIZE set in Directory.Build.targets");
 #endif
-                var lexer = new Lexer(stream, _logger);
+                var lexer = new Lexer(stream);
                 _document = new PdfDocument(lexer);
                 _document._state |= DocumentState.Imported;
                 _document._openMode = openMode;
@@ -297,7 +295,7 @@ namespace PdfSharp.Pdf.IO
                 // After reading all objects, all documents placeholder references get replaced by references knowing their objects in FinishReferences(),
                 // which finally sets IsUnderConstruction to false.
                 _document.IrefTable.IsUnderConstruction = true;
-                var parser = new Parser(_document, options ?? new PdfReaderOptions(), _logger);
+                var parser = new Parser(_document, options ?? new PdfReaderOptions());
 
                 // 1. Read all trailers or cross-reference streams, but no objects.
                 _document.Trailer = parser.ReadTrailer();
@@ -365,7 +363,7 @@ namespace PdfSharp.Pdf.IO
                 {
                     if (password != null)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("Password specified but document is not encrypted.");
+                        // PdfSharpLogHost.Logger.LogWarning("Password specified but document is not encrypted.");
                         // Ignore the password.
                     }
                 }
@@ -416,7 +414,7 @@ namespace PdfSharp.Pdf.IO
                     if (removed != 0)
                     {
                         //Debug.WriteLine("Number of deleted unreachable objects: " + removed);
-                        PdfSharpLogHost.PdfReadingLogger.LogInformation("Number of deleted unreachable objects: " + removed);
+                        // PdfSharpLogHost.PdfReadingLogger.LogInformation("Number of deleted unreachable objects: " + removed);
                     }
 
                     // Force flattening of page tree.
@@ -430,7 +428,7 @@ namespace PdfSharp.Pdf.IO
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Reading PDF document failed.");
+                //_logger.LogError(ex, "Reading PDF document failed.");
                 throw;
             }
             return _document;
@@ -620,6 +618,6 @@ namespace PdfSharp.Pdf.IO
 
         PdfReaderOptions _options;
         PdfDocument _document = default!;
-        readonly ILogger _logger;
+        //readonly ILogger _logger;
     }
 }

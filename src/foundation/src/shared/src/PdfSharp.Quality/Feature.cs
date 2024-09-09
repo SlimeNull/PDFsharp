@@ -4,9 +4,7 @@
 #if WPF
 using System.IO;
 #endif
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
-using PdfSharp.Logging;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
@@ -57,7 +55,7 @@ namespace PdfSharp.Quality
         {
             var document = new PdfDocument();
             document.Info.Title = "Created with PDFsharp";
-            document.Info.Subject = Invariant($"OS: {Environment.OSVersion}");
+            document.Info.Subject = $"OS: {Environment.OSVersion}";
             document.PageLayout = PdfPageLayout.SinglePage;
             return document;
         }
@@ -119,7 +117,7 @@ namespace PdfSharp.Quality
 
             //string filename = filenameTag;
             //if (!filenameTag.Contains("_tempfile"))
-            //    filename = Invariant($"{Guid.NewGuid():N}_{filenameTag}_tempfile.pdf");
+            //    filename = $"{Guid.NewGuid():N}_{filenameTag}_tempfile.pdf";
             //document.Save(filename);
             //return filename;
         }
@@ -150,8 +148,8 @@ namespace PdfSharp.Quality
             }
             catch (Exception ex)
             {
-                LogHost.Logger.LogError(ex, $"{nameof(ReadWritePdfDocument)} failed with file '{{filename}}'.",
-                    filename);
+                //LogHost.Logger.LogError(ex, $"{nameof(ReadWritePdfDocument)} failed with file '{{filename}}'.",
+                    //filename);
                 throw;
             }
 

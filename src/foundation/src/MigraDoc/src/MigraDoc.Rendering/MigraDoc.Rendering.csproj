@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;netstandard2.0;net45;net46;net462;net47;net48</TargetFrameworks>
     <RootNamespace>MigraDoc</RootNamespace>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\..\..\StrongnameKey.snk</AssemblyOriginatorKeyFile>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\foundation\src\shared\src\PdfSharp.System\System\CompilerServices.cs" Link="CompilerServices.cs" />
+    
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +62,13 @@
 
   <ItemGroup>
     <Folder Include="Rendering.Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

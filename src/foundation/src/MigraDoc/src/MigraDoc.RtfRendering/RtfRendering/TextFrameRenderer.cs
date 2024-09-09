@@ -2,11 +2,9 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
-using MigraDoc.Logging;
 
 namespace MigraDoc.RtfRendering
 {
@@ -50,7 +48,7 @@ namespace MigraDoc.RtfRendering
                 TextOrientation orient = _textFrame.Orientation;
                 if (orient != TextOrientation.Horizontal && orient != TextOrientation.HorizontalRotatedFarEast)
                 {
-                    MigraDocLogHost.RtfRenderingLogger.LogWarning(MdRtfMsgs.TextFrameContentsNotTurned.Message);
+//                     MigraDocLogHost.RtfRenderingLogger.LogWarning(MdRtfMsgs.TextFrameContentsNotTurned.Message);
                     //Debug.WriteLine(Messages2.TextframeContentsNotTurned, "warning");
                 }
             }

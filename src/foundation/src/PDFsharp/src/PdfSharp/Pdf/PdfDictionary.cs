@@ -1487,7 +1487,7 @@ namespace PdfSharp.Pdf
             /// </summary>
             public byte[] Value
             {
-                get => _value ??= Array.Empty<byte>();
+                get => _value ??= [];
                 set
                 {
                     if (value == null!)
@@ -1525,7 +1525,7 @@ namespace PdfSharp.Pdf
                             _value.CopyTo(bytes, 0);
                         }
                     }
-                    return bytes ?? Array.Empty<byte>();
+                    return bytes ?? [];
                 }
             }
 
@@ -1702,7 +1702,7 @@ namespace PdfSharp.Pdf
         /// Gets the DebuggerDisplayAttribute text.
         /// </summary>
         // ReSharper disable UnusedMember.Local
-        string DebuggerDisplay => Invariant($"dictionary({ObjectID.DebuggerDisplay},[{Elements.Count}])={_elements?.DebuggerDisplay}");
+        string DebuggerDisplay => $"dictionary({ObjectID.DebuggerDisplay},[{Elements.Count}])={_elements?.DebuggerDisplay}";
         // ReSharper restore UnusedMember.Local
     }
 }

@@ -11,7 +11,7 @@ namespace MigraDoc.DocumentObjectModel.Internals
     static class MSG
     {
         public static string SomeMessage(string someString, int someInt)
-            => Invariant($"Lorem ipsum {someString} labere {someInt}.");
+            => $"Lorem ipsum {someString} labere {someInt}.";
     }
 
     /// <summary>
@@ -39,13 +39,13 @@ namespace MigraDoc.DocumentObjectModel.Internals
         /// The specified object must be of type Style.
         /// </summary>
         public static ArgumentException ArgumentException_StyleExpected(Type wrongType)
-            => new(MdDomMsgs.StyleExpected(wrongType).Message);
+            => new(MdDomMsgs.StyleExpected(wrongType));
 
         /// <summary>
         /// The base style of style that is not a root style must be defined.
         /// </summary>
         public static ArgumentException ArgumentException_UndefinedBaseStyle(string style)
-            => new(MdDomMsgs.UndefinedBaseStyle(style).Message);
+            => new(MdDomMsgs.UndefinedBaseStyle(style));
 
         //public static string InvalidValueName(string name)
         //{

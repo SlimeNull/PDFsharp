@@ -737,7 +737,7 @@ namespace PdfSharp.Drawing
         /// </summary>
         public string RgbCmykG
         {
-            get => Invariant($"{_r};{_g};{_b};{_c:0.###};{_m:0.###};{_y:0.###};{_k:0.###};{_gs:0.###};{_a:0.###}");
+            get => $"{_r};{_g};{_b};{_c:0.###};{_m:0.###};{_y:0.###};{_k:0.###};{_gs:0.###};{_a:0.###}";
             set
             {
                 string[] values = value.Split(';');

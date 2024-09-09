@@ -2471,7 +2471,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// If cond is evaluated to false, a DdlParserException with the specified error will be thrown.
         /// </summary>
-        void EnsureCondition([DoesNotReturnIf(false)] bool cond, Func<MdDomMsg> func)
+        void EnsureCondition([DoesNotReturnIf(false)] bool cond, Func<string> func)
         {
             if (!cond)
                 ThrowParserException(func());
@@ -2490,7 +2490,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// If current symbol is not equal symbol a DdlParserException with the specified message ID
         /// will be thrown.
         /// </summary>
-        void EnsureSymbol(Symbol symbol, Func<MdDomMsg> func)
+        void EnsureSymbol(Symbol symbol, Func<string> func)
         {
             if (Symbol != symbol)
             {
@@ -2513,7 +2513,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Creates an ErrorInfo based on the given errorlevel, error and parms and adds it to the ErrorManager2.
         /// </summary>
-        void ReportParserInfo(DdlErrorLevel level, MdDomMsg domMsg)
+        void ReportParserInfo(DdlErrorLevel level, string domMsg)
         {
             var error = new DdlReaderError(level, domMsg,
               _scanner.DocumentFileName, _scanner.CurrentLine, _scanner.CurrentLinePos);
@@ -2530,14 +2530,14 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Creates an ErrorInfo based on the given inner exception, error, and parms and adds it to the ErrorManager2.
         /// </summary>
-        void ReportParserException(MdDomMsg domMsg, Exception? innerException = null)
+        void ReportParserException(string domMsg, Exception? innerException = null)
         {
-            var message = domMsg.Message;
+            var message = domMsg;
             if (innerException != null)
                 message = " Inner exception: " + innerException;
 
             //message += DomSR.FormatMessage(errorCode, parms);
-            var error = new DdlReaderError(DdlErrorLevel.Error, message, (int)domMsg.Id,
+            var error = new DdlReaderError(DdlErrorLevel.Error, message, -1,
               _scanner.DocumentFileName, _scanner.CurrentLine, _scanner.CurrentLinePos);
 
             _errors.AddError(error);
@@ -2548,13 +2548,13 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Throws a DdlParserException with that ErrorInfo.
         /// </summary>
         [DoesNotReturn]
-        void ThrowParserException(MdDomMsg domMsg, Exception? innerException = null)
+        void ThrowParserException(string domMsg, Exception? innerException = null)
         {
-            var message = domMsg.Message;
+            var message = domMsg;
             if (innerException != null)
                 message = " Inner exception: " + innerException;
 
-            var error = new DdlReaderError(DdlErrorLevel.Error, message, (int)domMsg.Id,
+            var error = new DdlReaderError(DdlErrorLevel.Error, message, -1,
                 _scanner.DocumentFileName, _scanner.CurrentLine, _scanner.CurrentLinePos);
 
             throw new DdlParserException(error, innerException);

@@ -6,10 +6,13 @@ using System.IO;
 #endif
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
+using PdfSharp.Pdf.Signatures;
+
+#if !NET45 && !NET46
 using Org.BouncyCastle.Cms;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Utilities.Collections;
-using PdfSharp.Pdf.Signatures;
+#endif
 
 namespace PdfSharp.Snippets.Pdf
 {
@@ -46,6 +49,9 @@ namespace PdfSharp.Snippets.Pdf
 
         public async Task<byte[]> GetSignatureAsync(Stream stream)
         {
+#if NET45 || NET46
+            throw new PlatformNotSupportedException("Signature is not supported on .NET Framework 4.5 and .NET Framework 4.6");
+#else
             await Task.CompletedTask.ConfigureAwait(false);
 
             stream.Position = 0;
@@ -70,6 +76,7 @@ namespace PdfSharp.Snippets.Pdf
             var signedData = signedDataGenerator.Generate(msg, false);
 
             return signedData.GetEncoded();
+#endif
         }
 
 
@@ -90,6 +97,9 @@ namespace PdfSharp.Snippets.Pdf
         /// <param name="pdfVersion">PDF version as int</param>
         string GetProperDigestAlgorithm(int pdfVersion)
         {
+#if NET45 || NET46
+            throw new PlatformNotSupportedException("Signature is not supported on .NET Framework 4.5 and .NET Framework 4.6");
+#else
             return pdfVersion switch
             {
                 >= 17 => CmsSignedGenerator.DigestSha512,
@@ -98,10 +108,14 @@ namespace PdfSharp.Snippets.Pdf
 
                 _ => CmsSignedGenerator.DigestSha256
             };
+#endif
         }
 
         string GetProperDigestAlgorithm(PdfMessageDigestType digestType)
         {
+#if NET45 || NET46
+            throw new PlatformNotSupportedException("Signature is not supported on .NET Framework 4.5 and .NET Framework 4.6");
+#else
             return digestType switch
             {
                 PdfMessageDigestType.SHA1 => CmsSignedGenerator.DigestSha1,  // SHA1 is obsolete, but you can use it.
@@ -111,10 +125,14 @@ namespace PdfSharp.Snippets.Pdf
                 PdfMessageDigestType.RIPEMD160 => CmsSignedGenerator.DigestRipeMD160,
                 _ => throw new ArgumentOutOfRangeException(nameof(digestType), digestType, null)
             };
+#endif
         }
 
         AsymmetricAlgorithm? GetAsymmetricAlgorithm(X509Certificate2 cert)
         {
+#if NET45 || NET46
+            throw new PlatformNotSupportedException("Signature is not supported on .NET Framework 4.5 and .NET Framework 4.6");
+#else
             const string RSA = "1.2.840.113549.1.1.1";
 #if NET6_0_OR_GREATER
             const string DSA = "1.2.840.10040.4.1";
@@ -131,6 +149,7 @@ namespace PdfSharp.Snippets.Pdf
 
                 _ => throw new NotImplementedException($"Unexpected OID value '{cert.PublicKey.Oid.Value}' for certificate."),
             };
+#endif
         }
     }
 }

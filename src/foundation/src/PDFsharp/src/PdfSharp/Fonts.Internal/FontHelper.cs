@@ -2,7 +2,6 @@
 // See the LICENSE file in the solution root for more information.
 
 #if GDI
-using PdfSharp.Logging;
 using GdiFontFamily = System.Drawing.FontFamily;
 using GdiFont = System.Drawing.Font;
 using GdiFontStyle = System.Drawing.FontStyle;
@@ -23,15 +22,12 @@ using Windows.UI.Text;
 using Windows.UI.Xaml.Media;
 #endif
 //using System.Drawing;
-//using Microsoft.Extensions.Logging;
-//using PdfSharp.Events;
+////using PdfSharp.Events;
 //using PdfSharp.Fonts;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 //using PdfSharp.Fonts.OpenType;
-//using PdfSharp.Logging;
-
+//
 namespace PdfSharp.Fonts.Internal
 {
     /// <summary>
@@ -88,7 +84,7 @@ namespace PdfSharp.Fonts.Internal
                     {
                         // We only come here when the text contains a low surrogate not preceded by a high surrogate.
                         // This is an error in the UTF-32 text and therefore ignored.
-                        PdfSharpLogHost.FontManagementLogger.LogWarning("Unexpected low surrogate found: 0x{Char:X2}", ch);
+                        // PdfSharpLogHost.FontManagementLogger.LogWarning("Unexpected low surrogate found: 0x{Char:X2}", ch);
                         continue;
                     }
 
@@ -106,14 +102,14 @@ namespace PdfSharp.Fonts.Internal
                             var ch2 = text[idx];
                             if (Char.IsLowSurrogate(ch2) is false)
                             {
-                                PdfSharpLogHost.FontManagementLogger.LogWarning("High surrogate 0x{Char:X2} not followed by low surrogate.", ch);
+                                // PdfSharpLogHost.FontManagementLogger.LogWarning("High surrogate 0x{Char:X2} not followed by low surrogate.", ch);
                                 continue;
                             }
                             glyphIndex = descriptor.SurrogatePairToGlyphIndex(ch, ch2);
                         }
                         else
                         {
-                            PdfSharpLogHost.FontManagementLogger.LogWarning("High surrogate 0x{Char:X2} found at end of string.", ch);
+                            // PdfSharpLogHost.FontManagementLogger.LogWarning("High surrogate 0x{Char:X2} found at end of string.", ch);
                             continue;
                         }
                     }
@@ -226,8 +222,8 @@ namespace PdfSharp.Fonts.Internal
 #else
             if (!gdiFamilyName.Equals(familyName, StringComparison.OrdinalIgnoreCase))
             {
-                var message = Invariant($"GDI request for font '' returns ''.");
-                PdfSharpLogHost.Logger.LogError(message);
+                var message = $"GDI request for font '' returns ''.";
+                // PdfSharpLogHost.Logger.LogError(message);
                 return null;
             }
 #endif
@@ -263,7 +259,11 @@ namespace PdfSharp.Fonts.Internal
             //typeface = s_typefaces[0];
 
             // BUG: does not work with fonts that have others than the four default styles
+#if NET45 || NET46
+            FormattedText formattedText = new FormattedText(text, new CultureInfo("en-us"), FlowDirection.LeftToRight, typeface, emSize, brush);
+#else
             FormattedText formattedText = new FormattedText(text, new CultureInfo("en-us"), FlowDirection.LeftToRight, typeface, emSize, brush, 1);
+#endif
             // .NET 4.0 feature new NumberSubstitution(), TextFormattingMode.Display);
             //formattedText.SetFontWeight(FontWeights.Bold);
             //formattedText.SetFontStyle(FontStyles.Oblique);

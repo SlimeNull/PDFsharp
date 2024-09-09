@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;net8.0-windows;net462</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net8.0-windows;net45;net46;net462;net47;net48</TargetFrameworks>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RootNamespace>MigraDoc</RootNamespace>
     <DefineConstants>WPF</DefineConstants>
@@ -46,7 +46,6 @@
     <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\ListInfoOverrideRenderer.cs" Link="RtfRendering\ListInfoOverrideRenderer.cs" />
     <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\ListInfoRenderer.cs" Link="RtfRendering\ListInfoRenderer.cs" />
     <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\MdRtfMsgs.cs" Link="RtfRendering\MdRtfMsgs.cs" />
-    <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\MdRtfMsg.cs" Link="RtfRendering\MdRtfMsg.cs" />
     <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\NumericFieldRendererBase.cs" Link="RtfRendering\NumericFieldRendererBase.cs" />
     <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\NumPagesFieldRenderer.cs" Link="RtfRendering\NumPagesFieldRenderer.cs" />
     <Compile Include="..\MigraDoc.RtfRendering\RtfRendering\PageBreakRenderer.cs" Link="RtfRendering\PageBreakRenderer.cs" />

@@ -3,7 +3,6 @@
 
 global using System.IO;
 global using PdfSharp.Diagnostics;
-global using static System.FormattableString;
 
 using System.Runtime.InteropServices;
 

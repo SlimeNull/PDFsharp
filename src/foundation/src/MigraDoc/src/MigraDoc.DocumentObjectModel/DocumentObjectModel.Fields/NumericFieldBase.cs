@@ -62,7 +62,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
                 if (IsValidFormat(value))
                     Values.Format = value;
                 else
-                    throw new ArgumentException(MdDomMsgs.InvalidFieldFormat(value).Message);
+                    throw new ArgumentException(MdDomMsgs.InvalidFieldFormat(value));
             }
         }
 

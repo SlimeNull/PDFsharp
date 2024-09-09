@@ -1,8 +1,6 @@
 // PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Internal
 {
@@ -22,7 +20,7 @@ namespace PdfSharp.Internal
             if (IsFontFactoryLockedByCurrentThread)
             {
                 // This should not happen by design.
-                PdfSharpLogHost.Logger.LogCritical("Entered GDI+ lock while FontFactory lock is also taken.");
+                // PdfSharpLogHost.Logger.LogCritical("Entered GDI+ lock while FontFactory lock is also taken.");
             }
         }
 
@@ -50,7 +48,7 @@ namespace PdfSharp.Internal
             if (IsGdiPlusLockedByCurrentThread)
             {
                 // This should not happen by design.
-                PdfSharpLogHost.Logger.LogCritical("Entered FontFactory lock while GDI+ lock is also taken.");
+                // PdfSharpLogHost.Logger.LogCritical("Entered FontFactory lock while GDI+ lock is also taken.");
             }
         }
 

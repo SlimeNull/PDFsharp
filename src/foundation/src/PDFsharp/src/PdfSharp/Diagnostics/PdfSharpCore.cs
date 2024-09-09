@@ -3,7 +3,6 @@
 
 using PdfSharp.Fonts;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Diagnostics
 {
@@ -20,7 +19,7 @@ namespace PdfSharp.Diagnostics
         {
             Capabilities.ResetAll();
             GlobalFontSettings.ResetAll();
-            PdfSharpLogHost.ResetLogging();
+            // PdfSharpLogHost.ResetLogging();
             Globals.Global.RecreateGlobals();
 
             if (FontFactory.HasFontSources)

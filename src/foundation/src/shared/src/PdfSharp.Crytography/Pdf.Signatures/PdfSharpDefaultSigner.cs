@@ -5,8 +5,11 @@
 using System.Net.Http.Headers;
 #endif
 using System.Security.Cryptography;
-using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
+
+#if !NET45 && !NET46
+using System.Security.Cryptography.Pkcs;
+#endif
 
 namespace PdfSharp.Pdf.Signatures
 {
@@ -76,6 +79,9 @@ namespace PdfSharp.Pdf.Signatures
         /// <exception cref="NotImplementedException"></exception>
         public async Task<byte[]> GetSignatureAsync(Stream stream)
         {
+#if NET45 || NET46
+            throw new PlatformNotSupportedException("Signature is not supported on .NET4.5 and .NET Framework 4.6");
+#else
             var content = new byte[stream.Length];
             stream.Position = 0;
             // ReSharper disable once MethodHasAsyncOverload
@@ -114,6 +120,7 @@ namespace PdfSharp.Pdf.Signatures
             var bytes = signedCms.Encode();
 
             return bytes;
+#endif
         }
 
         X509Certificate2 Certificate { get; init; }

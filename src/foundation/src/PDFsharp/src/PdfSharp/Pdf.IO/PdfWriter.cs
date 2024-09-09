@@ -503,19 +503,19 @@ namespace PdfSharp.Pdf.IO
                 if (_document.IsPdfA)
                 {
                     // Write full type name and comment in a separate line to be PDF-A conform.
-                    WriteRaw(Invariant($"% {value.GetType().FullName}{comment}\n"));
-                    WriteRaw(Invariant($"{value.ObjectID.ObjectNumber} {value.ObjectID.GenerationNumber} obj\n"));
+                    WriteRaw($"% {value.GetType().FullName}{comment}\n");
+                    WriteRaw($"{value.ObjectID.ObjectNumber} {value.ObjectID.GenerationNumber} obj\n");
                 }
                 else
                 {
                     // Write object number and full type name and comment in one line.
-                    WriteRaw(Invariant($"{value.ObjectID.ObjectNumber} {value.ObjectID.GenerationNumber} obj   % {value.GetType().FullName}{comment}\n"));
+                    WriteRaw($"{value.ObjectID.ObjectNumber} {value.ObjectID.GenerationNumber} obj   % {value.GetType().FullName}{comment}\n");
                 }
             }
             else
             {
                 // Write object number only.
-                WriteRaw(Invariant($"{value.ObjectID.ObjectNumber} {value.ObjectID.GenerationNumber} obj\n"));
+                WriteRaw($"{value.ObjectID.ObjectNumber} {value.ObjectID.GenerationNumber} obj\n");
             }
         }
 
@@ -525,7 +525,7 @@ namespace PdfSharp.Pdf.IO
             int version = document._version;
             //header.Append((version / 10).ToString(CultureInfo.InvariantCulture) + "." +
             //  (version % 10).ToString(CultureInfo.InvariantCulture) + "\n%\xD3\xF4\xCC\xE1\n");
-            header.Append(Invariant($"{version / 10}.{version % 10}\n%\xD3\xF4\xCC\xE1\n"));
+            header.Append($"{version / 10}.{version % 10}\n%\xD3\xF4\xCC\xE1\n");
             WriteRaw(header.ToString());
 
             if (Layout == PdfWriterLayout.Verbose)
@@ -560,15 +560,15 @@ namespace PdfSharp.Pdf.IO
                 // Without InvariantCulture parameter the following line fails if the current culture is e.g.
                 // a Far East culture, because the date string contains non-ASCII characters.
                 // So never never never never use ToString without a culture info.
-                WriteRaw(Invariant($"Creation date: {document._creation:G}"));
+                WriteRaw($"Creation date: {document._creation:G}");
                 _stream.Position = _commentPosition + 50;
-                WriteRaw(Invariant($"Creation time: {duration.TotalSeconds:0.000} seconds"));
+                WriteRaw($"Creation time: {duration.TotalSeconds:0.000} seconds");
                 _stream.Position = _commentPosition + 100;
-                WriteRaw(Invariant($"File size: {fileSize:#,###} bytes"));
+                WriteRaw($"File size: {fileSize:#,###} bytes");
                 _stream.Position = _commentPosition + 150;
-                WriteRaw(Invariant($"Pages: {document.Pages.Count:#}"));  // No thousands separator here.
+                WriteRaw($"Pages: {document.Pages.Count:#}");  // No thousands separator here.
                 _stream.Position = _commentPosition + 200;
-                WriteRaw(Invariant($"Objects: {document.IrefTable.ObjectTable.Count:#,###}"));
+                WriteRaw($"Objects: {document.IrefTable.ObjectTable.Count:#,###}");
             }
         }
 

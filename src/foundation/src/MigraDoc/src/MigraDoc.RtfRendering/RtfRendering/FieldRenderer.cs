@@ -45,7 +45,7 @@ namespace MigraDoc.RtfRendering
         /// </summary>
         protected virtual string GetFieldResult()
         {
-            return MdRtfMsgs.UpdateField.Message;
+            return MdRtfMsgs.UpdateField;
         }
     }
 }

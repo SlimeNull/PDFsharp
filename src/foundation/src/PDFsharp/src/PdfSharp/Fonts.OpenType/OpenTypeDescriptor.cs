@@ -2,7 +2,6 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Text;
-using Microsoft.Extensions.Logging;
 #if GDI
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,7 +13,6 @@ using System.Windows;
 using PdfSharp.Pdf.Internal;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts.Internal;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Fonts.OpenType
 {
@@ -346,7 +344,7 @@ namespace PdfSharp.Fonts.OpenType
         {
             if (codePoint <= 0xFFFF)
             {
-                PdfSharpLogHost.FontManagementLogger.LogWarning("For code points from the BMP call BmpCharacterToGlyphID directly.");
+                // PdfSharpLogHost.FontManagementLogger.LogWarning("For code points from the BMP call BmpCharacterToGlyphID directly.");
                 return BmpCodepointToGlyphIndex((char)codePoint);
             }
 
@@ -400,7 +398,7 @@ namespace PdfSharp.Fonts.OpenType
             // ReSharper disable once RedundantCatchClause
             catch (Exception)
             {
-                PdfSharpLogHost.FontManagementLogger.LogError("Invalid glyph index hmtx: 0x{Glyph:X4}", glyphIndex);
+                // PdfSharpLogHost.FontManagementLogger.LogError("Invalid glyph index hmtx: 0x{Glyph:X4}", glyphIndex);
                 throw;
             }
         }
@@ -424,7 +422,7 @@ namespace PdfSharp.Fonts.OpenType
             }
             catch (Exception ex)
             {
-                PdfSharpLogHost.Logger.LogError(ex, "Error calculating em-size for glyph 0x{Glyph:X4}.", glyphIndex);
+                // PdfSharpLogHost.Logger.LogError(ex, "Error calculating em-size for glyph 0x{Glyph:X4}.", glyphIndex);
                 throw;
             }
         }
@@ -449,7 +447,7 @@ namespace PdfSharp.Fonts.OpenType
             }
             catch (Exception ex)
             {
-                PdfSharpLogHost.Logger.LogError(ex, "Error find advance width for glyph 0x{Glyph:X4}.", glyphIndex);
+                // PdfSharpLogHost.Logger.LogError(ex, "Error find advance width for glyph 0x{Glyph:X4}.", glyphIndex);
                 throw;
             }
         }
@@ -495,7 +493,7 @@ namespace PdfSharp.Fonts.OpenType
                     if ((ch & 0xFF00) != 0)
                     {
                         // Just log a hint but do not skip the character.
-                        PdfSharpLogHost.FontManagementLogger.LogDebug("Unexpected character found for symbol font: 0x{Char:X2}", ch);
+                        // PdfSharpLogHost.FontManagementLogger.LogDebug("Unexpected character found for symbol font: 0x{Char:X2}", ch);
                     }
 
                     // Remap ch for symbol fonts.
@@ -553,7 +551,7 @@ namespace PdfSharp.Fonts.OpenType
             if (ch > 255 && !((uint)(ch - 0xf000) <= 0xff))
             {
                 var value = ((int)ch).ToString("x4");
-                PdfSharpLogHost.FontManagementLogger.LogError("Character 0u{char} of a symbol font is not in valid range.", value);
+                // PdfSharpLogHost.FontManagementLogger.LogError("Character 0u{char} of a symbol font is not in valid range.", value);
             }
 
             // Used | instead of + because of: http://pdfsharp.codeplex.com/workitem/15954

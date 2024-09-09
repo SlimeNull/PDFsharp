@@ -45,7 +45,7 @@ namespace PdfSharp.Internal
             => "The set value property must not be null.";
 
         public static string InvalidValue(int val, string name, int min, int max)
-            => Invariant($"{val} is not a valid value for {name}. {name} should be greater than or equal to {min} and less than or equal to {max}.");
+            => $"{val} is not a valid value for {name}. {name} should be greater than or equal to {min} and less than or equal to {max}.";
 
         public static string ObsoleteFunctionCalled
             => "The function is obsolete and must not be called.";
@@ -72,7 +72,7 @@ namespace PdfSharp.Internal
             => "The PointF array must not be empty.";
 
         public static string PointArrayAtLeast(int count)
-            => Invariant($"The point array must contain {count} or more points.");
+            => $"The point array must contain {count} or more points.";
 
         public static string NeedPenOrBrush
             => "XPen or XBrush or both must not be null.";
@@ -96,7 +96,7 @@ namespace PdfSharp.Internal
             => "The file is not a valid PDF document.";
 
         public static string InvalidVersionNumber(int value)
-            => Invariant($"The value {value} is not a valid version number.");  // Valid values are 12, 13, and 14. 
+            => $"The value {value} is not a valid version number.";  // Valid values are 12, 13, and 14. 
 
         public static string PasswordRequired
             => "A password is required to open the PDF document.";
@@ -168,7 +168,7 @@ namespace PdfSharp.Internal
         }
 
         public static string CannotGetGlyphTypeface(string fontName)
-            => Invariant($"Cannot get a matching glyph typeface for font '{fontName}'.");
+            => $"Cannot get a matching glyph typeface for font '{fontName}'.";
 
         // ----- PdfParser ----------------------------------------------------------------------------
 

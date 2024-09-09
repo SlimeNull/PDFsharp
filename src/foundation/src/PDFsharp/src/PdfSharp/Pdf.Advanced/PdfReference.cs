@@ -7,8 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.IO;
 
 namespace PdfSharp.Pdf.Advanced
@@ -72,7 +70,7 @@ namespace PdfSharp.Pdf.Advanced
             // PDFsharp does not yet support PDF 1.5 object streams for writing.
 
             // Each line must be exactly 20 bytes long, otherwise Acrobat repairs the file.
-            writer.WriteRaw(Invariant($"{_position:0000000000} {_objectID.GenerationNumber:00000} n \n"));
+            writer.WriteRaw($"{_position:0000000000} {_objectID.GenerationNumber:00000} n \n");
         }
 
         /// <summary>
@@ -180,7 +178,7 @@ namespace PdfSharp.Pdf.Advanced
 #if DEBUG
                 if (_document == null)
                 {
-                    PdfSharpLogHost.Logger.LogDebug("Document of object {_objectID} is null.", _objectID);
+                    // PdfSharpLogHost.Logger.LogDebug("Document of object {_objectID} is null.", _objectID);
                 }
 #endif
                 return _document!;

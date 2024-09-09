@@ -1,10 +1,8 @@
 // PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts.OpenType;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Internal;
 
 namespace PdfSharp.Fonts.Internal
@@ -61,7 +59,7 @@ namespace PdfSharp.Fonts.Internal
                         else
                         {
                             // Case: Unpaired high surrogate.
-                            PdfSharpLogHost.FontManagementLogger.LogDebug("High surrogate 0x{Char:X2} not followed by a low surrogate.", ch);
+                            // PdfSharpLogHost.FontManagementLogger.LogDebug("High surrogate 0x{Char:X2} not followed by a low surrogate.", ch);
                             idx--;
                             continue;
                         }
@@ -69,7 +67,7 @@ namespace PdfSharp.Fonts.Internal
                     else
                     {
                         // Case: High surrogate at string end.
-                        PdfSharpLogHost.FontManagementLogger.LogDebug("High surrogate 0x{Char:X2} found at end of string.", ch);
+                        // PdfSharpLogHost.FontManagementLogger.LogDebug("High surrogate 0x{Char:X2} found at end of string.", ch);
                         break;
                     }
                 }
@@ -83,7 +81,7 @@ namespace PdfSharp.Fonts.Internal
                         // Case: unpaired low surrogate.
                         // We only come here when the text contains a low surrogate not preceded by a high surrogate.
                         // This is an error in the UTF-32 text.
-                        PdfSharpLogHost.FontManagementLogger.LogDebug("Unexpected low surrogate found: 0x{Char:X2}", ch);
+                        // PdfSharpLogHost.FontManagementLogger.LogDebug("Unexpected low surrogate found: 0x{Char:X2}", ch);
                         continue;
                     }
 

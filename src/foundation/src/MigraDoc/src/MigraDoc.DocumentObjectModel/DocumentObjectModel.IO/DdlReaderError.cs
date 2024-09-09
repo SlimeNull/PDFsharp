@@ -13,12 +13,12 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Initializes a new instance of the DdlReaderError class.
         /// </summary>
-        internal DdlReaderError(DdlErrorLevel level, MdDomMsg domMsg,
+        internal DdlReaderError(DdlErrorLevel level, string domMsg,
             string sourceFile = "", int sourceLine = 0, int sourceColumn = 0)
         {
             ErrorLevel = level;
-            ErrorMessage = domMsg.Message;
-            ErrorNumber = (int)domMsg.Id;
+            ErrorMessage = domMsg;
+            ErrorNumber = (int)-1;
             SourceFile = sourceFile;
             SourceLine = sourceLine;
             SourceColumn = sourceColumn;

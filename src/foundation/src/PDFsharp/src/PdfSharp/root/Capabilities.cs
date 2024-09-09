@@ -1,9 +1,7 @@
 // PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
-using PdfSharp.Logging;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member because it is UNDER CONSTRUCTION.
 
@@ -66,7 +64,7 @@ namespace PdfSharp
         /// </remarks>
         public static void ResetAll()
         {
-            PdfSharpLogHost.Logger.LogInformation("All PDFsharp capability settings are about to be reset.");
+            // PdfSharpLogHost.Logger.LogInformation("All PDFsharp capability settings are about to be reset.");
 
             Action.GlyphsToPath = FeatureNotAvailableBehavior.SilentlyIgnore;
 

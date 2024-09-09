@@ -1,8 +1,6 @@
 ﻿// PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.IO;
 
 namespace PdfSharp.Pdf.Security.Encryption
@@ -46,9 +44,9 @@ namespace PdfSharp.Pdf.Security.Encryption
         {
             if (Capabilities.Compatibility.IgnoreErrorsOnDecryption)
             {
-                PdfSharpLogHost.Logger.LogWarning("A cryptographic exception occurred while decrypting an object. PDFsharp will handle the content as not encrypted.\n" +
-                                          "If PDFsharp will not be able to load the file due to consequential errors, the encryption of the file does not meet the specifications for the supported encryption methods.\n" +
-                                          "If PDFsharp will load the file and the contents seem to be correct, the file is at least partly not encrypted as expected.");
+                // PdfSharpLogHost.Logger.LogWarning("A cryptographic exception occurred while decrypting an object. PDFsharp will handle the content as not encrypted.\n" +
+                                          //"If PDFsharp will not be able to load the file due to consequential errors, the encryption of the file does not meet the specifications for the supported encryption methods.\n" +
+                                          //"If PDFsharp will load the file and the contents seem to be correct, the file is at least partly not encrypted as expected.");
                 return true;
             }
 

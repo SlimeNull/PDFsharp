@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
-using PdfSharp.Logging;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using PdfSharp.Quality;
@@ -31,15 +30,15 @@ namespace Shared.TestApp
             ILogger logger = loggerFactory.CreateLogger<Program>();
             logger.LogInformation("Example log message 1");
 
-            LogHost.Logger.LogInformation("Example log message 2");
+            //LogHost.Logger.LogInformation("Example log message 2");
 
-            LogHost.Factory = loggerFactory;
+            //LogHost.Factory = loggerFactory;
 
-            LogHost.Logger.LogError("Something went wrong.");
+            //LogHost.Logger.LogError("Something went wrong.");
 
-            LogHost.Logger.TestMessage(LogLevel.Critical, "blah");
-            LogHost.Logger.TestMessage("di-blub");
-            LogHost.Logger.TestMessage("------------------------------------------------------------------------------");
+            //LogHost.Logger.TestMessage(LogLevel.Critical, "blah");
+            //LogHost.Logger.TestMessage("di-blub");
+            //LogHost.Logger.TestMessage("------------------------------------------------------------------------------");
 
 
 

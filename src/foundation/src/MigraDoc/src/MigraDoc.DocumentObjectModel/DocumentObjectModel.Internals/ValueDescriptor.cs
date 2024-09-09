@@ -136,7 +136,7 @@ namespace MigraDoc.DocumentObjectModel.Internals
         protected void EnsureGetValueFlags(GV flags)
         {
             if (!Enum.IsDefined(typeof(GV), flags))
-                throw new InvalidEnumArgumentException(MdDomMsgs.InvalidEnumValue(flags).Message);
+                throw new InvalidEnumArgumentException(MdDomMsgs.InvalidEnumValue(flags));
         }
 
         /// <summary>

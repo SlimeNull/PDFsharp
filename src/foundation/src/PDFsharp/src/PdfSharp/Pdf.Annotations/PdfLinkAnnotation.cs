@@ -203,11 +203,11 @@ namespace PdfSharp.Pdf.Annotations
                     //Elements[Keys.Dest] = new PdfLiteral("[{0} 0 R/XYZ null null 0]", dest.ObjectNumber);
                     if (_point.HasValue)
                     {
-                        Elements[Keys.Dest] = new PdfLiteral(Invariant($"[{dest.ObjectNumber} 0 R /XYZ {_point.Value.X} {_point.Value.Y} 0]") /*, dest.ObjectNumber, _point.Value.X, _point.Value.Y*/);
+                        Elements[Keys.Dest] = new PdfLiteral($"[{dest.ObjectNumber} 0 R /XYZ {_point.Value.X} {_point.Value.Y} 0]") /*, dest.ObjectNumber, _point.Value.X, _point.Value.Y*/;
                     }
                     else
                     {
-                        Elements[Keys.Dest] = new PdfLiteral(Invariant($"[{dest.ObjectNumber} 0 R /XYZ null null 0]") /*, dest.ObjectNumber*/);
+                        Elements[Keys.Dest] = new PdfLiteral($"[{dest.ObjectNumber} 0 R /XYZ null null 0]") /*, dest.ObjectNumber*/;
                     }
                     break;
 

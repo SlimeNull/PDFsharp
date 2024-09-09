@@ -2,8 +2,6 @@
 // See the LICENSE file in the solution root for more information.
 
 using MigraDoc.DocumentObjectModel.Internals;
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 using FLOAT = System.Single;
 
 namespace MigraDoc.DocumentObjectModel
@@ -27,7 +25,7 @@ namespace MigraDoc.DocumentObjectModel
         {
             if (argb == 0 && Capabilities.BackwardCompatibility.TreatArgbZeroAsEmptyColor)
             {
-                LogHost.Logger.ArgbValueIsConsideredEmptyColor(LogLevel.Information);
+                //LogHost.Logger.ArgbValueIsConsideredEmptyColor(LogLevel.Information);
                 this = Color.Empty;
                 return;
             }
@@ -370,7 +368,7 @@ namespace MigraDoc.DocumentObjectModel
                             break;
 
                         default:
-                            throw new ArgumentException(MdDomMsgs.InvalidColorString(color).Message);
+                            throw new ArgumentException(MdDomMsgs.InvalidColorString(color));
                     }
                 }
                 clr = UInt32.Parse(number, numberStyle);
@@ -378,7 +376,7 @@ namespace MigraDoc.DocumentObjectModel
             }
             catch (FormatException ex)
             {
-                throw new ArgumentException(MdDomMsgs.InvalidColorString(color).Message, ex);
+                throw new ArgumentException(MdDomMsgs.InvalidColorString(color), ex);
             }
         }
 

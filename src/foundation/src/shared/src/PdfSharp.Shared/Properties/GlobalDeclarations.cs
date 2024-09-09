@@ -9,8 +9,6 @@ global using SizeType = System.Int64;
 global using SizeType = System.Int32;
 #endif
 
-global using static System.FormattableString;
-
 using System.Diagnostics.CodeAnalysis;
 //using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;

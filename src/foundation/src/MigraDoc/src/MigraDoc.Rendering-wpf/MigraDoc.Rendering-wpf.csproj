@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-      <TargetFrameworks>net6.0-windows;net8.0-windows;net462</TargetFrameworks>
+      <TargetFrameworks>net6.0-windows;net8.0-windows;net45;net46;net462;net47;net48</TargetFrameworks>
       <EnableWindowsTargeting>true</EnableWindowsTargeting>
       <RootNamespace>MigraDoc</RootNamespace>
       <UseWPF>true</UseWPF>
@@ -22,10 +22,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net462|AnyCPU'">
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\..\..\..\foundation\src\shared\src\PdfSharp.System\System\CompilerServices.cs" Link="CompilerServices.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\MigraDoc.Rendering\Properties\GlobalDeclarations.cs" Link="Properties\GlobalDeclarations.cs" />
@@ -79,7 +75,6 @@
     <Compile Include="..\MigraDoc.Rendering\Rendering\LayoutInfo.cs" Link="Rendering\LayoutInfo.cs" />
     <Compile Include="..\MigraDoc.Rendering\Rendering\LineFormatRenderer.cs" Link="Rendering\LineFormatRenderer.cs" />
     <Compile Include="..\MigraDoc.Rendering\Rendering\MdPdfMsgs.cs" Link="Rendering\MdPdfMsgs.cs" />
-    <Compile Include="..\MigraDoc.Rendering\Rendering\MdPdfMsg.cs" Link="Rendering\MdPdfMsg.cs" />
     <Compile Include="..\MigraDoc.Rendering\Rendering\MigraDocRenderingBuildInformation.cs" Link="Rendering\MigraDocRenderingBuildInformation.cs" />
     <Compile Include="..\MigraDoc.Rendering\Rendering\NumberFormatter.cs" Link="Rendering\NumberFormatter.cs" />
     <Compile Include="..\MigraDoc.Rendering\Rendering\PageBreakFormatInfo.cs" Link="Rendering\PageBreakFormatInfo.cs" />
@@ -131,6 +126,13 @@
     <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp-wpf\PdfSharp-wpf.csproj" />
     <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp.Charting-wpf\PdfSharp.Charting-wpf.csproj" />
     <ProjectReference Include="..\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

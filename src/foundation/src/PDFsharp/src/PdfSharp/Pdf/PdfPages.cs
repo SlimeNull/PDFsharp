@@ -3,7 +3,6 @@
 
 using System.Collections;
 using PdfSharp.Events;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.IO;
 using PdfSharp.Pdf.Advanced;
 using PdfSharp.Pdf.Annotations;
@@ -139,7 +138,7 @@ namespace PdfSharp.Pdf
                 if (_document._uaManager != null)
                     _document.Events.OnPageAdded(_document, new PageEventArgs(_document) { Page = page, PageIndex = index, EventType = PageEventType.Moved });
 
-                PdfSharpLogHost.Logger.ExistingPdfPageAdded(_document?.Name);
+                // PdfSharpLogHost.Logger.ExistingPdfPageAdded(_document?.Name);
 
                 return page;
             }
@@ -179,7 +178,7 @@ namespace PdfSharp.Pdf
                     _document.Events.OnPageAdded(_document, new PageEventArgs(_document) { Page = page, PageIndex = index, EventType = PageEventType.Imported });
             }
 
-            PdfSharpLogHost.Logger.NewPdfPageCreated(_document?.Name);
+            // PdfSharpLogHost.Logger.NewPdfPageCreated(_document?.Name);
 
             if (Owner.Settings.TrimMargins.AreSet)
                 page.TrimMargins = Owner.Settings.TrimMargins;

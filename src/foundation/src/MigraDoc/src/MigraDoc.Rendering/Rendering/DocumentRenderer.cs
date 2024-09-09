@@ -160,7 +160,7 @@ namespace MigraDoc.Rendering
             if (documentObject is not Shape &&
                 documentObject is not Table &&
                 documentObject is not Paragraph)
-                throw new ArgumentException(MdPdfMsgs.ObjectNotRenderable(documentObject.GetType().Name).Message);
+                throw new ArgumentException(MdPdfMsgs.ObjectNotRenderable(documentObject.GetType().Name));
 
             var renderer = Renderer.Create(graphics, this, documentObject, null);
             renderer!.Format(new Rectangle(xPosition, yPosition, width, double.MaxValue), null);

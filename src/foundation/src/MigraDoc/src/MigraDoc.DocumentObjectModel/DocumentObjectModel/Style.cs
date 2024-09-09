@@ -132,7 +132,7 @@ namespace MigraDoc.DocumentObjectModel
             set
             {
                 if (value == null || value == "" && !String.IsNullOrEmpty(Values.BaseStyle))
-                    throw new ArgumentException(MdDomMsgs.EmptyBaseStyle.Message);
+                    throw new ArgumentException(MdDomMsgs.EmptyBaseStyle);
 
                 // Self assignment is allowed. Treat null like "".
                 if (value == "" && String.IsNullOrEmpty(Values.BaseStyle)) // BUG???

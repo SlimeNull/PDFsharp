@@ -23,7 +23,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         TopPosition(ShapePosition value)
         {
             if (!(IsValid(value) || value == ShapePosition.Undefined))
-                throw new ArgumentException(MdDomMsgs.InvalidEnumForTopPosition.Message);
+                throw new ArgumentException(MdDomMsgs.InvalidEnumForTopPosition);
 
             ShapePosition = value;
             Position = Unit.Empty;
@@ -35,7 +35,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         void SetFromEnum(ShapePosition shapePosition)
         {
             if (!IsValid(shapePosition))
-                throw new ArgumentException(MdDomMsgs.InvalidEnumForTopPosition.Message);
+                throw new ArgumentException(MdDomMsgs.InvalidEnumForTopPosition);
 
             ShapePosition = shapePosition;
             Position = Unit.Empty;

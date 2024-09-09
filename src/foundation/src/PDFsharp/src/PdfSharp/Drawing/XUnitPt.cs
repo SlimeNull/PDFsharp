@@ -246,7 +246,7 @@ namespace PdfSharp.Drawing
         /// </summary>
         /// <value>The debugger display.</value>
         // ReSharper disable UnusedMember.Local
-        string DebuggerDisplay => Invariant($"{Value:0.######} pt");
+        string DebuggerDisplay => $"{Value:0.######} pt";
         // ReSharper restore UnusedMember.Local
     }
 }

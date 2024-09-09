@@ -76,7 +76,7 @@ namespace PdfSharp.Drawing
                 XFontStyleValue.Normal => "Normal",
                 XFontStyleValue.Oblique => "Oblique",
                 XFontStyleValue.Italic => "Italic",
-                _ => throw new InvalidOperationException(Invariant($"Invalid style value '{(int)_style}'."))
+                _ => throw new InvalidOperationException($"Invalid style value '{(int)_style}'.")
             };
 
             // why not return _style.ToString() ?

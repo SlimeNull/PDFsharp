@@ -5,9 +5,7 @@ using System;
 using MigraDoc.DocumentObjectModel;
 using System.Globalization;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 using MigraDoc.DocumentObjectModel.Fields;
-using MigraDoc.Logging;
 
 namespace MigraDoc.RtfRendering
 {
@@ -140,7 +138,7 @@ namespace MigraDoc.RtfRendering
                         if (isEscaped)
                         {
                             //Doesn’t work in Word format strings.
-                            MigraDocLogHost.RtfRenderingLogger.LogWarning(MdRtfMsgs.CharacterNotAllowedInDateFormat(c).Message);
+//                             MigraDocLogHost.RtfRenderingLogger.LogWarning(MdRtfMsgs.CharacterNotAllowedInDateFormat(c).Message);
                             //Debug.WriteLine(Messages2.CharacterNotAllowedInDateFormat(c), "warning");
                             isEscaped = false;
                         }

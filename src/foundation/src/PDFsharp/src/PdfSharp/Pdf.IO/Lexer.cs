@@ -2,9 +2,7 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Text;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Internal;
 
 namespace PdfSharp.Pdf.IO
@@ -21,14 +19,13 @@ namespace PdfSharp.Pdf.IO
         /// <summary>
         /// Initializes a new instance of the Lexer class.
         /// </summary>
-        public Lexer(Stream pdfInputStream, ILogger? logger)
+        public Lexer(Stream pdfInputStream)
         {
             _pdfStream = pdfInputStream;
             // ReSharper disable once RedundantCast because SizeType can be 32 bit depending on build.
             _pdfLength = (SizeType)_pdfStream.Length;
             _idxChar = 0;
             Position = 0;
-            _logger = logger ?? PdfSharpLogHost.PdfReadingLogger;
         }
 
         /// <summary>
@@ -219,7 +216,7 @@ namespace PdfSharp.Pdf.IO
 
                     static char LogError(char ch)
                     {
-                        PdfSharpLogHost.Logger.LogError("Illegal character {char} in hex string.", ch);
+                        // PdfSharpLogHost.Logger.LogError("Illegal character {char} in hex string.", ch);
                         return '\0';
                     }
                 }
@@ -300,7 +297,7 @@ namespace PdfSharp.Pdf.IO
                 // Never saw this in any PDF file, but possible.
                 if (ch is not ('.' or >= '0' and <= '9'))
                 {
-                    PdfSharpLogHost.Logger.LogError("+/- not followed by a number.");
+                    // PdfSharpLogHost.Logger.LogError("+/- not followed by a number.");
                 }
             }
 
@@ -683,7 +680,7 @@ namespace PdfSharp.Pdf.IO
 
             static char LogError(char ch)
             {
-                PdfSharpLogHost.Logger.LogError("Illegal character {char} in hex string.", ch);
+                //// PdfSharpLogHost.Logger.LogError("Illegal character {char} in hex string.", ch);
                 return '\0';
             }
         }
@@ -772,15 +769,15 @@ namespace PdfSharp.Pdf.IO
                 ScanNextChar(true);
             }
 
-            string message;
-            if (skip > 0 || true)
-            {
-                if (_logger.IsEnabled(LogLevel.Warning))
-                {
-                    message = Invariant($"Skipped {skip} illegal blanks behind keyword 'stream' at position {currentPosition} in object {id}.");
-                    _logger.LogWarning(message);
-                }
-            }
+            //string message;
+            //if (skip > 0 || true)
+            //{
+            //    if (_logger.IsEnabled(LogLevel.Warning))
+            //    {
+            //        message = $"Skipped {skip} illegal blanks behind keyword 'stream' at position {currentPosition} in object {id}.";
+            //        _logger.LogWarning(message);
+            //    }
+            //}
 
             // Single LF.
             if (_currChar == Chars.LF)
@@ -799,20 +796,20 @@ namespace PdfSharp.Pdf.IO
             // Single CR is illegal according to spec.
             if (_currChar == Chars.CR)
             {
-                if (_logger.IsEnabled(LogLevel.Warning))
-                {
-                    message = Invariant($"Keyword 'stream' followed by single CR is illegal at position {currentPosition} in object {id}.");
-                    _logger.LogWarning(message);
-                }
+                //if (_logger.IsEnabled(LogLevel.Warning))
+                //{
+                //    message = $"Keyword 'stream' followed by single CR is illegal at position {currentPosition} in object {id}.";
+                //    _logger.LogWarning(message);
+                //}
                 Position += 1;
                 return Position;
             }
 
-            if (_logger.IsEnabled(LogLevel.Warning))
-            {
-                message = Invariant($"Keyword 'stream' followed by illegal bytes at position {currentPosition} in object {id}.");
-                _logger.LogWarning(message);
-            }
+            //if (_logger.IsEnabled(LogLevel.Warning))
+            //{
+            //    message = $"Keyword 'stream' followed by illegal bytes at position {currentPosition} in object {id}.";
+            //    _logger.LogWarning(message);
+            //}
 
             // Best we can do here is to define content starts immediately behind 'stream' or behind the last blank, respectively.
             return Position;
@@ -1205,7 +1202,6 @@ namespace PdfSharp.Pdf.IO
         double _tokenAsReal;
         (int, int) _tokenAsObjectID;
         readonly Stream _pdfStream;
-        ILogger _logger;
     }
 
 #if DEBUG

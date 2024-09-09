@@ -7,10 +7,8 @@ using System.Drawing;
 #if WPF
 using System.Windows;
 #endif
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Internal
 {
@@ -33,15 +31,15 @@ namespace PdfSharp.Internal
                     break;
 
                 case FeatureNotAvailableBehavior.LogInformation:
-                    PdfSharpLogHost.Logger.LogInformation(PdfSharpEvent.Placeholder, prefix, message);
+                    //// PdfSharpLogHost.Logger.LogInformation(PdfSharpEvent.Placeholder, prefix, message);
                     break;
 
                 case FeatureNotAvailableBehavior.LogWarning:
-                    PdfSharpLogHost.Logger.LogWarning(PdfSharpEventId.Placeholder, prefix, message);
+                    //// PdfSharpLogHost.Logger.LogWarning(PdfSharpEventId.Placeholder, prefix, message);
                     break;
 
                 case FeatureNotAvailableBehavior.LogError:
-                    PdfSharpLogHost.Logger.LogError(PdfSharpEventId.Placeholder, prefix, message);
+                    //// PdfSharpLogHost.Logger.LogError(PdfSharpEventId.Placeholder, prefix, message);
                     break;
 
                 case FeatureNotAvailableBehavior.ThrowException:

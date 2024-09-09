@@ -26,32 +26,32 @@ namespace MigraDoc.RtfRendering
     // ReSharper disable once IdentifierTypo
     class MdRtfMsgs
     {
-        internal static MdRtfMsg TextFrameContentsNotTurned
-            => new(MdRtfMsgId.TextFrameContentsNotTurned, "Text-frame contents could not be turned. Only paragraphs can be turned within text-frames.");
+        internal static string TextFrameContentsNotTurned
+            => "Text-frame contents could not be turned. Only paragraphs can be turned within text-frames.";
 
-        internal static MdRtfMsg ImageFreelyPlacedInWrongContext(string imageName)
-            => new(MdRtfMsgId.ImageFreelyPlacedInWrongContext, $"Images can be placed freely only within headers, footers and sections. Image {imageName} will be ignored.");
+        internal static string ImageFreelyPlacedInWrongContext(string imageName)
+            => $"Images can be placed freely only within headers, footers and sections. Image {imageName} will be ignored.";
 
-        internal static MdRtfMsg ChartFreelyPlacedInWrongContext
-            => new(MdRtfMsgId.ChartFreelyPlacedInWrongContext, "Chart is being ignored. A chart can be placed freely only within headers, footers and sections.");
+        internal static string ChartFreelyPlacedInWrongContext
+            => "Chart is being ignored. A chart can be placed freely only within headers, footers and sections.";
 
-        internal static MdRtfMsg ImageNotFound(string imageName)
-            => new(MdRtfMsgId.ImageNotFound, $"Image '{imageName}' could not be found.");
+        internal static string ImageNotFound(string imageName)
+            => $"Image '{imageName}' could not be found.";
 
-        internal static MdRtfMsg ImageNotReadable(string imageName, string innerException)
-            => new(MdRtfMsgId.ImageNotReadable, $"Image '{imageName}' could not be read. Inner Exception:\r\n{innerException}.");
+        internal static string ImageNotReadable(string imageName, string innerException)
+            => $"Image '{imageName}' could not be read. Inner Exception:\r\n{innerException}.";
 
-        internal static MdRtfMsg ImageTypeNotSupported(string imageName)
-            => new(MdRtfMsgId.ImageTypeNotSupported, $"Type of image '{imageName}' is not supported.");
+        internal static string ImageTypeNotSupported(string imageName)
+            => $"Type of image '{imageName}' is not supported.";
 
-        internal static MdRtfMsg InvalidNumericFieldFormat(string format)
-            => new(MdRtfMsgId.InvalidNumericFieldFormat, $"'{format}' is not a valid format for a numeric field and will be ignored.");
+        internal static string InvalidNumericFieldFormat(string format)
+            => $"'{format}' is not a valid format for a numeric field and will be ignored.";
 
-        internal static MdRtfMsg CharacterNotAllowedInDateFormat(char character)
-            => new(MdRtfMsgId.CharacterNotAllowedInDateFormat, $"The character '{character}' is not allowed in a date field’s format string and will be ignored.");
+        internal static string CharacterNotAllowedInDateFormat(char character)
+            => $"The character '{character}' is not allowed in a date field’s format string and will be ignored.";
 
-        internal static MdRtfMsg UpdateField
-            => new(MdRtfMsgId.UpdateField, "< Please update this field. >");
+        internal static string UpdateField
+            => "< Please update this field. >";
 
         // ReSharper disable InconsistentNaming
     }

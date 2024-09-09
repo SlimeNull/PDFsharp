@@ -3,8 +3,6 @@
 
 using System;
 using System.Collections;
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.IO;
 
 namespace PdfSharp.Pdf.Advanced
@@ -51,8 +49,8 @@ namespace PdfSharp.Pdf.Advanced
                 // On GitHub user packdat provides a PR that orders objects. This code is not yet integrated,
                 // because releasing 6.1.0 had a higher priority. We will fix this in 6.2.0.
                 // However, using the last added object and logging an error is better than throwing an exception in all cases.
-                PdfSharpLogHost.PdfReadingLogger.LogError("Object '{ObjectID}' already exists in xref table’s objects, referring to position {Position}. The latter one referring to position {Position} is used. " +
-                                                          "This should not occur. If somebody came here, please send us your PDF file so that we can fix it (issues (at) pdfsharp.net.", oldIref.ObjectID, oldIref.Position, iref.Position);
+                // PdfSharpLogHost.PdfReadingLogger.LogError("Object '{ObjectID}' already exists in xref table’s objects, referring to position {Position}. The latter one referring to position {Position} is used. " +
+                                                          //"This should not occur. If somebody came here, please send us your PDF file so that we can fix it (issues (at) pdfsharp.net.", oldIref.ObjectID, oldIref.Position, iref.Position);
 
                 ObjectTable.Remove(iref.ObjectID);
 #else
@@ -160,15 +158,15 @@ namespace PdfSharp.Pdf.Advanced
             var iRefs = AllReferences;
 
             int count = iRefs.Length;
-            writer.WriteRaw(Invariant($"0 {count + 1}\n"));
-            writer.WriteRaw(Invariant($"{0:0000000000} {65535:00000} f \n"));
+            writer.WriteRaw($"0 {count + 1}\n");
+            writer.WriteRaw($"{0:0000000000} {65535:00000} f \n");
 
             for (int idx = 0; idx < count; idx++)
             {
                 var iref = iRefs[idx];
 
                 // Acrobat is very pedantic; it must be exactly 20 bytes per line.
-                writer.WriteRaw(Invariant($"{iref.Position:0000000000} {iref.GenerationNumber:00000} n \n"));
+                writer.WriteRaw($"{iref.Position:0000000000} {iref.GenerationNumber:00000} n \n");
             }
         }
 
@@ -509,7 +507,7 @@ namespace PdfSharp.Pdf.Advanced
                             if (!ReferenceEquals(iref.Document, _document))
                             {
                                 //Debug.WriteLine($"Bad iref: {iref.ObjectID.ToString()}");
-                                PdfSharpLogHost.PdfReadingLogger.LogError($"Bad iref: {iref.ObjectID.ToString()}");
+                                // PdfSharpLogHost.PdfReadingLogger.LogError($"Bad iref: {iref.ObjectID.ToString()}");
                             }
                             Debug.Assert(ReferenceEquals(iref.Document, _document) || iref.Document == null, "External object detected!");
 #if DEBUG_

@@ -31,7 +31,7 @@ namespace PdfSharp.Internal
             // As bytes is in little endian order, check the most significant bit of the last byte. If it is 1, append the zero byte.
             if (isUnsigned && bytes.Length > 0 && (bytes.Last() & 0x80) > 0)
             {
-#if NET462
+#if NET45 || NET46 || NET462 || NET47 || NET48
                 var len = bytes.Length;
                 var bytes2 = new byte[len + 1];
                 bytes.CopyTo(bytes2, 0);

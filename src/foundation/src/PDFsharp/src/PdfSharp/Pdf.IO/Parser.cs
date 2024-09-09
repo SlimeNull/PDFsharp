@@ -2,9 +2,7 @@
 // See the LICENSE file in the solution root for more information.
 
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Advanced;
-using Microsoft.Extensions.Logging;
 
 namespace PdfSharp.Pdf.IO
 {
@@ -31,13 +29,13 @@ namespace PdfSharp.Pdf.IO
         /// <summary>
         /// Constructs a parser for a document.
         /// </summary>
-        public Parser(PdfDocument document, PdfReaderOptions options, ILogger? logger)
+        public Parser(PdfDocument document, PdfReaderOptions options)
         {
             _document = document;
             _options = options;
             _lexer = document._lexer ?? throw new ArgumentNullException(nameof(document), "Lexer not defined.");
             _documentParser = this;
-            _logger = logger ?? PdfSharpLogHost.PdfReadingLogger;
+            //_logger = logger ?? PdfSharpLogHost.PdfReadingLogger;
         }
 
         /// <summary>
@@ -47,9 +45,9 @@ namespace PdfSharp.Pdf.IO
         {
             _document = document!; // NRT HACK
             _options = documentParser._options;
-            _lexer = new Lexer(objectStream, documentParser._logger);
+            _lexer = new Lexer(objectStream);
             _documentParser = documentParser;
-            _logger = documentParser._logger ?? PdfSharpLogHost.PdfReadingLogger;
+            //_logger = documentParser._logger ?? PdfSharpLogHost.PdfReadingLogger;
         }
 
         /// <summary>
@@ -152,14 +150,14 @@ namespace PdfSharp.Pdf.IO
                     // This only happens with corrupt PDF files that have duplicate IDs.
                     if (iref.Value != null!)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("Another instance of object {iref} was found. Using previously encountered object instead.", iref);
+                        // PdfSharpLogHost.Logger.LogWarning("Another instance of object {iref} was found. Using previously encountered object instead.", iref);
                         // Attempt to read an object that was already read. Keep the former object.
                         return iref.Value;
                     }
 
                     if (iref.Position >= 0)
                     {
-                        PdfSharpLogHost.Logger.LogWarning("Another instance of object {iref} was found. Keeping reference to previously encountered object.", iref);
+                        // PdfSharpLogHost.Logger.LogWarning("Another instance of object {iref} was found. Keeping reference to previously encountered object.", iref);
                         // The object ID was already found, but the object was not read yet.
                         // We ignore the object in the object stream and return a dummy object.
                         // Better: Do not call this method in the first place.
@@ -178,7 +176,7 @@ namespace PdfSharp.Pdf.IO
             if (fromObjectStream is false && objectID != new PdfObjectID(objectNumber, generationNumber))
             {
                 // Investigate if this happens. Please send us the PDF file for analysing it (issues (at) pdfsharp.net).
-                PdfSharpLogHost.Logger.LogError("Something happened in an object stream that is not expected but can be ignored.");
+                // PdfSharpLogHost.Logger.LogError("Something happened in an object stream that is not expected but can be ignored.");
                 // A special kind of bug? Or is this an undocumented PDF feature?
                 // PDF4NET 2.6 provides a sample called 'Unicode', which produces a file 'unicode.pdf'
                 // The iref table of this file contains the following entries:
@@ -489,8 +487,8 @@ namespace PdfSharp.Pdf.IO
             }
 
             // The dictionary obviously has not even the required /Length entry 🤯.
-            PdfSharpLogHost.Logger.LogError("Object '{Object}' has no valid /Length entry. Try to determine stream length by looking for 'endstream'.",
-                dict.ObjectID.ToString());
+            // PdfSharpLogHost.Logger.LogError("Object '{Object}' has no valid /Length entry. Try to determine stream length by looking for 'endstream'.",
+                //dict.ObjectID.ToString());
 #if TEST_CODE_
         TestStreamWithoutLengthEntry:
 #endif
@@ -516,8 +514,8 @@ namespace PdfSharp.Pdf.IO
             if (SuppressExceptions.HasError(suppressObjectOrderExceptions))
                 return -1;
 
-            PdfSharpLogHost.Logger.LogInformation("Determined stream length of object '{Object}' is {StreamLength}.",
-                dict.ObjectID, lenStream);
+            // PdfSharpLogHost.Logger.LogInformation("Determined stream length of object '{Object}' is {StreamLength}.",
+                //dict.ObjectID, lenStream);
 
             // Give stream a direct Length entry.
             dict.Elements["/Length"] = new PdfInteger(lenStream);
@@ -542,9 +540,9 @@ namespace PdfSharp.Pdf.IO
 
             // #INVALID_PDF
             _endStreamNotFoundCounter++;
-            PdfSharpLogHost.Logger.LogError(
-                "Failed to read 'endstream' in object '{ObjectID}' immediately behind the end of the stream. (counter: {Counter})",
-                dict.ObjectID, _endStreamNotFoundCounter);
+            // PdfSharpLogHost.Logger.LogError(
+                //"Failed to read 'endstream' in object '{ObjectID}' immediately behind the end of the stream. (counter: {Counter})",
+                //dict.ObjectID, _endStreamNotFoundCounter);
 
             // Try find 'endstream' manually.
             var oldLength = streamLength;
@@ -557,9 +555,9 @@ namespace PdfSharp.Pdf.IO
                 _ = typeof(int);
 #endif
             Debug.Assert(streamLength != oldLength, "In this case we should not come here.");
-            PdfSharpLogHost.Logger.LogInformation(
-                "Stream length of object '{ObjectID}' corrected from {OldLength} to {CorrectLength}.",
-                dict.ObjectID, oldLength, streamLength);
+            // PdfSharpLogHost.Logger.LogInformation(
+                //"Stream length of object '{ObjectID}' corrected from {OldLength} to {CorrectLength}.",
+                //dict.ObjectID, oldLength, streamLength);
 
             // Give stream the correct Length entry based on position of 'endstream'.
             dict.Elements["/Length"] = new PdfInteger(streamLength);
@@ -948,7 +946,7 @@ namespace PdfSharp.Pdf.IO
             catch (Exception ex)
             {
                 //Debug.WriteLine(ex.Message);
-                PdfSharpLogHost.PdfReadingLogger.LogError(ex.Message);
+                // PdfSharpLogHost.PdfReadingLogger.LogError(ex.Message);
                 // Rethrow exception to notify caller.
                 throw;
             }
@@ -986,7 +984,7 @@ namespace PdfSharp.Pdf.IO
                 }
 
                 //Debug.WriteLine($"Reading indirect object with ID {objectID} from ObjectStream will be retried.");
-                PdfSharpLogHost.PdfReadingLogger.LogWarning($"Reading indirect object with ID {objectID} from ObjectStream will be retried.");
+                // PdfSharpLogHost.PdfReadingLogger.LogWarning($"Reading indirect object with ID {objectID} from ObjectStream will be retried.");
 
                 // Load skippedObjectStreamNumbers in the next round and reset skippedObjectStreamNumbers variable.
                 var oldObjectStreamCount = _objectStreamsWithParsers.Count;
@@ -998,7 +996,7 @@ namespace PdfSharp.Pdf.IO
             }
 
             //Debug.WriteLine($"Reading indirect object with ID {objectID} from ObjectStream finally failed.");
-            PdfSharpLogHost.PdfReadingLogger.LogError($"Reading indirect object with ID {objectID} from ObjectStream finally failed.");
+            // PdfSharpLogHost.PdfReadingLogger.LogError($"Reading indirect object with ID {objectID} from ObjectStream finally failed.");
 
             throw TH.PdfReaderException_ObjectCouldNotBeFoundInObjectStreams();
         }
@@ -1103,7 +1101,7 @@ namespace PdfSharp.Pdf.IO
                             skippedObjectStreamIDs.Add(objectStreamID);
 
                             //Debug.WriteLine($"Loading ObjectStream with ID {objectStreamID} will be retried.");
-                            PdfSharpLogHost.PdfReadingLogger.LogWarning($"Loading ObjectStream with ID {objectStreamID} will be retried.");
+                            // PdfSharpLogHost.PdfReadingLogger.LogWarning($"Loading ObjectStream with ID {objectStreamID} will be retried.");
 
                             // Read next object.
                             continue;
@@ -1128,7 +1126,7 @@ namespace PdfSharp.Pdf.IO
             if (objectStreamIDsToLoad.Any())
             {
                 //Debug.WriteLine($"Loading ObjectStreams with IDs {String.Join(", ", objectStreamIDsToLoad)} finally failed.");
-                PdfSharpLogHost.PdfReadingLogger.LogError($"Loading ObjectStreams with IDs {String.Join(", ", objectStreamIDsToLoad)} finally failed.");
+                // PdfSharpLogHost.PdfReadingLogger.LogError($"Loading ObjectStreams with IDs {String.Join(", ", objectStreamIDsToLoad)} finally failed.");
 
                 throw new ObjectNotAvailableException($"Could not load the ObjectStreams with the following ObjectNumbers: {String.Join(", ", objectStreamIDsToLoad)}. " +
                                                       $"Perhaps there is a cyclic reference between ObjectStreams, whose stream lengths are saved in an object inside the other ObjectStream.");
@@ -1218,7 +1216,7 @@ namespace PdfSharp.Pdf.IO
             // SAP sometimes creates files with a size of several MByte and places 'startxref' somewhere in the middle...
             if (idx == -1)
             {
-                PdfSharpLogHost.Logger.LogError("Cannot find 'startxref' within the last 1024 bytes of the PDF file.");
+                // PdfSharpLogHost.Logger.LogError("Cannot find 'startxref' within the last 1024 bytes of the PDF file.");
                 // If 'startxref' was still not found yet, read the file completely.
                 if (length > int.MaxValue)
                 {
@@ -1320,9 +1318,9 @@ namespace PdfSharp.Pdf.IO
                                     idToUse = idChecked;
                                     //ParserDiagnostics.ThrowParserException("Invalid entry in XRef table, ID=" + id + ", Generation=" + generation + ", Position=" + position + ", ID of referenced object=" + idChecked + ", Generation of referenced object=" + generationChecked);  // TODO L10N using PsMsgs
                                 }
-                                var message = Invariant(
-                                    $"Object ID mismatch: Object at position {position} has ID '{id}' according to xref table and ID '{idChecked}' at its position of file.");
-                                PdfSharpLogHost.Logger.LogError(message);
+                                //var message = Invariant(
+                                //    $"Object ID mismatch: Object at position {position} has ID '{id}' according to xref table and ID '{idChecked}' at its position of file.");
+                                // // PdfSharpLogHost.Logger.LogError(message);
                             }
 #endif
                             // Even if it is restricted, an object can exist in more than one subsection.
@@ -1383,7 +1381,7 @@ namespace PdfSharp.Pdf.IO
                 //string token = _lexer.Token;
                 Symbol symbol = _lexer.ScanNextToken(false);
                 if (symbol != Symbol.Obj)
-                    ParserDiagnostics.ThrowParserException(Invariant($"Invalid entry in XRef table, ID={id} {generation} at position={position}")); // TODO L10N using PsMsgs
+                    ParserDiagnostics.ThrowParserException($"Invalid entry in XRef table, ID={id} {generation} at position={position}"); // TODO L10N using PsMsgs
 
                 if (id != idChecked || generation != generationChecked)
                     return false;
@@ -1421,7 +1419,7 @@ namespace PdfSharp.Pdf.IO
             if (generation != 0)
             {
                 // Considered to be an error, but without consequences.
-                PdfSharpLogHost.Logger.LogError($"Generation number of object '{number} {generation}' which is cross-reference stream shall not be other than zero.");
+                // // PdfSharpLogHost.Logger.LogError($"Generation number of object '{number} {generation}' which is cross-reference stream shall not be other than zero.");
             }
 
             // Reference 2.0: 7.5.7  Object streams / Page 61
@@ -1466,8 +1464,8 @@ namespace PdfSharp.Pdf.IO
 
                 if (oldIref.Position != xrefStart)
                 {
-                    PdfSharpLogHost.PdfReadingLogger.LogError("Object '{ObjectID}' already exists in xref table’s references, referring to position {Position}. The latter one referring to position {Position} is used. " +
-                                                              "This should not occur. If somebody came here, please send us your PDF file so that we can fix it (issues (at) pdfsharp.net.", oldIref.ObjectID, oldIref.Position, xrefStart);
+                    // PdfSharpLogHost.PdfReadingLogger.LogError("Object '{ObjectID}' already exists in xref table’s references, referring to position {Position}. The latter one referring to position {Position} is used. " +
+                                                              //"This should not occur. If somebody came here, please send us your PDF file so that we can fix it (issues (at) pdfsharp.net.", oldIref.ObjectID, oldIref.Position, xrefStart);
 
                     oldIref.Position = xrefStart;
                 }
@@ -1723,7 +1721,7 @@ namespace PdfSharp.Pdf.IO
         readonly Dictionary<PdfObjectID, (PdfObjectStream ObjectStream, Parser Parser)> _objectStreamsWithParsers = new();
         readonly Parser _documentParser;
         private int _endStreamNotFoundCounter = 0;
-        readonly ILogger _logger;
+        //readonly ILogger _logger;
     }
 
     static class StreamHelper

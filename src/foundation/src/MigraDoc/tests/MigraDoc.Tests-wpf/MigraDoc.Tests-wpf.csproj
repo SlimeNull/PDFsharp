@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\foundation\src\shared\src\PdfSharp.System\System\CompilerServices.cs" Link="CompilerServices.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\MigraDoc.Tests\ChartTests.cs" Link="ChartTests.cs" />
     <Compile Include="..\MigraDoc.Tests\CultureAndRegionTests.cs" Link="CultureAndRegionTests.cs" />
     <Compile Include="..\MigraDoc.Tests\Extensions\XunitHelper.cs" Link="Extensions\XunitHelper.cs" />
@@ -39,6 +35,7 @@
     <Compile Include="..\MigraDoc.Tests\SpaceBeforeTests.cs" Link="SpaceBeforeTests.cs" />
     <Compile Include="..\MigraDoc.Tests\TableTests.cs" Link="TableTests.cs" />
     <Compile Include="..\MigraDoc.Tests\TextTests.cs" Link="TextTests.cs" />
+    <Compile Include="..\MigraDoc.Tests\RuntimeHelpers.cs" Link="RuntimeHelpers.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +60,14 @@
   <ItemGroup>
     <PackageReference Include="Xunit.SkippableFact" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" />
   </ItemGroup>
 
 </Project>

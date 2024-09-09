@@ -55,7 +55,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         internal override void Serialize(Serializer serializer)
         {
             if (String.IsNullOrEmpty(Values.Name))
-                throw new InvalidOperationException(MdDomMsgs.MissingObligatoryProperty(nameof(Name), nameof(BookmarkField)).Message);
+                throw new InvalidOperationException(MdDomMsgs.MissingObligatoryProperty(nameof(Name), nameof(BookmarkField)));
 
             serializer.Write("\\field(Bookmark)[Name = \"" + Name.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"]");
         }

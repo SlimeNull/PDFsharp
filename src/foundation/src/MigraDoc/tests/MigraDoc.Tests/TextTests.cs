@@ -2,13 +2,11 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Globalization;
-using Microsoft.Extensions.Logging;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.Rendering;
 using MigraDoc.RtfRendering;
 using PdfSharp.Fonts;
-using PdfSharp.Logging;
 using PdfSharp.Quality;
 using PdfSharp.Snippets.Font;
 using PdfSharp.TestHelper;
@@ -183,7 +181,7 @@ namespace MigraDoc.Tests
         [Fact]
         public static void Document_with_No_Break_Hyphen_before_Tabs()
         {
-            LogHost.Factory = LoggerFactory.Create(builder => builder.AddConsole());
+            //LogHost.Factory = LoggerFactory.Create(builder => builder.AddConsole());
 
             // Create a new MigraDoc document.
             var document = new Document();

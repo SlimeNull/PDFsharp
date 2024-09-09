@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;netstandard2.0;net45;net46;net462;net47;net48</TargetFrameworks>
     <RootNamespace>PdfSharp</RootNamespace>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\..\..\StrongnameKey.snk</AssemblyOriginatorKeyFile>
@@ -12,12 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\PdfSharp.System\System\CompilerServices.cs" Link="System\CompilerServices.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" />
-    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+    
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +20,30 @@
     <ProjectReference Include="..\PdfSharp.System\PdfSharp.System.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+  
   <ItemGroup>
     <Folder Include="System\" />
   </ItemGroup>

@@ -364,7 +364,7 @@ namespace PdfSharp.Quality
                         if (assetsVersion >= requiredAssetsVersion)
                             return;
                         throw new IOException(
-                            Invariant($"The required assets version is {requiredAssetsVersion}, but the current version is just {assetsVersion}. ") +
+                            $"The required assets version is {requiredAssetsVersion}, but the current version is just {assetsVersion}. " +
                             AssetsInfo);
                     }
                 }

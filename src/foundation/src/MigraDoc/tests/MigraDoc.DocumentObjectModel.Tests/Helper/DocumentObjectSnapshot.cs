@@ -203,7 +203,7 @@ namespace MigraDoc.DocumentObjectModel.Tests.Helper
         {
             var typeStr = type?.Name ?? "unknown";
             if (index != null)
-                propertyName = Invariant($"{propertyName}[{index}]");
+                propertyName = $"{propertyName}[{index}]";
 
             var segment = propertyName == null
                 ? $"({typeStr})"

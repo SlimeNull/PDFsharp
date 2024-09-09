@@ -1,8 +1,6 @@
 ﻿// PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
-using PdfSharp.Logging;
 
 namespace PdfSharp.Internal
 {
@@ -58,7 +56,7 @@ namespace PdfSharp.Internal
             {
                 if (_globalFontStorageVersionCount != version)
                 {
-                    PdfSharpLogHost.Logger.LogCritical("Your XFont object is outdated because you have reset the font management.");
+                    // PdfSharpLogHost.Logger.LogCritical("Your XFont object is outdated because you have reset the font management.");
                     throw new InvalidOperationException("Old instance of an object is used in a newer instance of Globals.");
                 }
             }

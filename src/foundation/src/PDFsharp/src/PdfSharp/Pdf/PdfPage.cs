@@ -2,10 +2,8 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.ComponentModel;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Pdf.IO;
 using PdfSharp.Drawing;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Advanced;
 using PdfSharp.Pdf.Annotations;
 
@@ -388,8 +386,8 @@ namespace PdfSharp.Pdf
                 if (value >= 360)
                 {
                     // An imported PDF may contain a value larger than or equal to 360.
-                    var message = Invariant($"Illegal /Rotate value {value}.");
-                    PdfSharpLogHost.Logger.LogError(message);
+                    var message = $"Illegal /Rotate value {value}.";
+                    // PdfSharpLogHost.Logger.LogError(message);
                     while (value >= 360)
                         value -= 360;
                 }

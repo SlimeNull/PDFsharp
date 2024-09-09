@@ -21,6 +21,6 @@
 //        public static SyMsg IndexOutOfRange2<T>(string parameter, T lowerBound, T upperBound)
 //            => new(SyMsgId.IndexOutOfRange,
 //            $"The value of '{parameter}' is out of range. " +
-//                   Invariant($"The value must be between '{lowerBound}' and '{upperBound}'."));
+//                   $"The value must be between '{lowerBound}' and '{upperBound}'.");
 //    }
 //}

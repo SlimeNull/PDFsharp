@@ -99,7 +99,7 @@ namespace PdfSharp.Pdf
         /// </summary>
         public override string ToString()
             //return _objectNumber.ToString(CultureInfo.InvariantCulture) + " " + _generationNumber.ToString(CultureInfo.InvariantCulture);
-            => Invariant($"{_objectNumber} {_generationNumber}");
+            => $"{_objectNumber} {_generationNumber}";
 
         /// <summary>
         /// Creates an empty object identifier.

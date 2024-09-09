@@ -18,9 +18,9 @@ namespace PdfSharp.Internal
         public static string IndexOutOfRange3
             => "Index out of range.";
 
-        public static SyMsg IndexOutOfRange2<T>(string parameter, T lowerBound, T upperBound)
-            => new(SyMsgId.IndexOutOfRange,
-            $"The value of '{parameter}' is out of range. " +
-                   Invariant($"The value must be between '{lowerBound}' and '{upperBound}'."));
+        //public static SyMsg IndexOutOfRange2<T>(string parameter, T lowerBound, T upperBound)
+        //    => new(SyMsgId.IndexOutOfRange,
+        //    $"The value of '{parameter}' is out of range. " +
+        //           $"The value must be between '{lowerBound}' and '{upperBound}'.");
     }
 }

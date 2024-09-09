@@ -1,11 +1,9 @@
 ﻿// PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
 using PdfSharp.Fonts;
 using PdfSharp.Fonts.OpenType;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf;
 
 namespace PdfSharp.Fonts
@@ -77,7 +75,7 @@ namespace PdfSharp.Fonts
             // Can happen in e.g. a web application.
             if (ReferenceEquals(value, location))
             {
-                PdfSharpLogHost.Logger.LogWarning("Setting the same font resolver twice is ignored.");
+                // PdfSharpLogHost.Logger.LogWarning("Setting the same font resolver twice is ignored.");
                 return;
             }
 
@@ -85,7 +83,7 @@ namespace PdfSharp.Fonts
             // Can happen in e.g. a MAUI application.
             if (location != null && ReferenceEquals(value.GetType(), location.GetType()))
             {
-                PdfSharpLogHost.Logger.LogWarning("Setting another instance of the same type of a font resolver is ignored.");
+                // PdfSharpLogHost.Logger.LogWarning("Setting another instance of the same type of a font resolver is ignored.");
                 return;
             }
 
@@ -138,7 +136,7 @@ namespace PdfSharp.Fonts
         internal static void ResetAll(bool calledFromResetFontManagement = false)
         {
             if (calledFromResetFontManagement)
-                PdfSharpLogHost.Logger.LogInformation("PDFsharp font management is about to be reset.");
+                // PdfSharpLogHost.Logger.LogInformation("PDFsharp font management is about to be reset.");
 
             Globals.Global.Fonts.FontResolver = null;
             Globals.Global.Fonts.FallbackFontResolver = null;

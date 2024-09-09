@@ -1,10 +1,8 @@
 ﻿// PDFsharp - A .NET library for processing PDF
 // See the LICENSE file in the solution root for more information.
 
-using Microsoft.Extensions.Logging;
 using PdfSharp;
 using PdfSharp.Drawing;
-using PdfSharp.Logging;
 using PdfSharp.Pdf;
 using PdfSharp.Quality;
 
@@ -14,16 +12,16 @@ namespace HelloWorld
     {
         static void Main(string[] _)
         {
-            // Set a logger factory.
-            // https://docs.pdfsharp.net/link/logging.html
-            using var loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder
-                    .AddFilter("PDFsharp", LogLevel.Warning)
-                    .AddFilter(_ => true)
-                    .AddConsole();
-            });
-            LogHost.Factory = loggerFactory;
+            //// Set a logger factory.
+            //// https://docs.pdfsharp.net/link/logging.html
+            //using var loggerFactory = LoggerFactory.Create(builder =>
+            //{
+            //    builder
+            //        .AddFilter("PDFsharp", LogLevel.Warning)
+            //        .AddFilter(_ => true)
+            //        .AddConsole();
+            //});
+            //LogHost.Factory = loggerFactory;
 
             // Create a new PDF document.
             var document = new PdfDocument();

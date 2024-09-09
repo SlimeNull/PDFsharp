@@ -288,7 +288,7 @@ namespace MigraDoc.DocumentObjectModel
 
                     if (notNull == FontProperties.Size)
                     {
-                        serializer.Write(Invariant($"\\fontsize({Size})"));
+                        serializer.Write($"\\fontsize({Size})");
                         return;
                     }
 
@@ -310,7 +310,7 @@ namespace MigraDoc.DocumentObjectModel
                     if (notNull == FontProperties.Color)
                     {
                         // Only Color is set.
-                        serializer.Write(Invariant($"\\fontcolor({Color})"));
+                        serializer.Write($"\\fontcolor({Color})");
                         return;
                     }
                 }

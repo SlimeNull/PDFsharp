@@ -781,7 +781,7 @@ namespace PdfSharp.Drawing
         {
             get
             {
-                return Invariant($"font=('{Name}' {Size:0.##}{(Bold ? " bold" : "")}{(Italic ? " italic" : "")} {GlyphTypeface.StyleSimulations})");
+                return $"font=('{Name}' {Size:0.##}{(Bold ? " bold" : "")}{(Italic ? " italic" : "")} {GlyphTypeface.StyleSimulations})";
             }
         }
     }

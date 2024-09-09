@@ -3,11 +3,9 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 using PdfSharp.Events;
 using PdfSharp.Fonts.Internal;
-using PdfSharp.Logging;
 using PdfSharp.Pdf.Advanced;
 using PdfSharp.Pdf.Internal;
 using PdfSharp.Pdf.IO;
@@ -35,7 +33,7 @@ namespace PdfSharp.Pdf
         /// </summary>
         public PdfDocument()
         {
-            PdfSharpLogHost.Logger.PdfDocumentCreated(Name);
+            // PdfSharpLogHost.Logger.PdfDocumentCreated(Name);
             //PdfDocument.Gob.AttachDocument(Handle);
             _document = this;
             _creation = DateTime.Now;
@@ -315,7 +313,7 @@ namespace PdfSharp.Pdf
         /// </summary>
         async Task DoSaveAsync(PdfWriter writer)
         {
-            PdfSharpLogHost.Logger.PdfDocumentSaved(Name);
+            // PdfSharpLogHost.Logger.PdfDocumentSaved(Name);
 
             if (_pages == null || _pages.Count == 0)
             {
@@ -489,11 +487,11 @@ namespace PdfSharp.Pdf
 
 #if true
             // Remove all unreachable objects (e.g. from deleted pages).
-            int removed = IrefTable.Compact();
-            if (removed != 0 && PdfSharpLogHost.Logger.IsEnabled(LogLevel.Information))
-            {
-                PdfSharpLogHost.Logger.LogInformation($"PrepareForSave: Number of deleted unreachable objects: {removed}");
-            }
+            //int removed = IrefTable.Compact();
+            //if (removed != 0 && PdfSharpLogHost.Logger.IsEnabled(LogLevel.Information))
+            //{
+            //    // PdfSharpLogHost.Logger.LogInformation($"PrepareForSave: Number of deleted unreachable objects: {removed}");
+            //}
             IrefTable.Renumber();
 #endif
 

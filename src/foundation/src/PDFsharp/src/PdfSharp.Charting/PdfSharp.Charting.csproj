@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>library</OutputType>
-    <TargetFrameworks>net6.0;net8.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;netstandard2.0;net45;net46;net462;net47;net48</TargetFrameworks>
     <RootNamespace>PdfSharp</RootNamespace>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\..\..\StrongnameKey.snk</AssemblyOriginatorKeyFile>
@@ -15,6 +15,16 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\shared\src\PdfSharp.System\PdfSharp.System.csproj" />
     <ProjectReference Include="..\PdfSharp\PdfSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Memory" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <PackageReference Include="System.ValueTuple" />
   </ItemGroup>
 
 </Project>

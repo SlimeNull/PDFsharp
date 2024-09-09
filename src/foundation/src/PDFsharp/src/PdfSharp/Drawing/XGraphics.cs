@@ -2,7 +2,6 @@
 // See the LICENSE file in the solution root for more information.
 
 using System.Text;
-using Microsoft.Extensions.Logging;
 
 #if GDI
 using System.Drawing.Drawing2D;
@@ -43,7 +42,6 @@ using PdfSharp.Drawing.Pdf;
 using PdfSharp.Events;
 using PdfSharp.Fonts.Internal;
 using PdfSharp.Internal;
-using PdfSharp.Logging;
 //using PdfSharp.Internal;
 using PdfSharp.Pdf.Advanced;
 using PdfSharp.Pdf.Internal;
@@ -552,14 +550,14 @@ namespace PdfSharp.Drawing  // #??? Clean up
             //XGraphics gfx = new XGraphics((System.Drawing.Graphics)null, size, pageUnit, pageDirection);
             var gfx = new XGraphics(null, size, pageUnit, pageDirection, renderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("dummy GDI+ Graphics object used as measure context");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("dummy GDI+ Graphics object used as measure context");
 
             return gfx;
 #endif
 #if WPF
             var gfx = new XGraphics((DrawingContext?)null, size, pageUnit, pageDirection, renderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("dummy WPF DrawingContext object used as measure context");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("dummy WPF DrawingContext object used as measure context");
 
             return gfx;
 #endif
@@ -577,7 +575,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             // Creating a new instance is by design.
             var gfx = new XGraphics(graphics, size, XGraphicsUnit.Point, XPageDirection.Downwards, renderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("GDI+ Graphics object");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("GDI+ Graphics object");
 
             return gfx;
         }
@@ -590,7 +588,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             // Creating a new instance is by design.
             var gfx = new XGraphics(graphics, size, unit, XPageDirection.Downwards, renderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("GDI+ Graphics object");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("GDI+ Graphics object");
 
             return gfx;
 
@@ -623,7 +621,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         {
             var gfx = new XGraphics(drawingContext, size, unit, XPageDirection.Downwards, renderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("WPF DrawingContext object");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("WPF DrawingContext object");
 
             return gfx;
         }
@@ -637,7 +635,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         {
             var gfx = new XGraphics(canvas, size, unit, XPageDirection.Downwards, renderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("WPF Canvas object");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("WPF Canvas object");
 
             return gfx;
         }
@@ -649,7 +647,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         /// </summary>
         public static XGraphics FromCanvasDrawingSession(CanvasDrawingSession drawingSession, XSize size, XGraphicsUnit unit)
         {
-            PdfSharpLogHost.Logger.XGraphicsCreated
+            // PdfSharpLogHost.Logger.XGraphicsCreated
             return new XGraphics(drawingSession, size, unit, XPageDirection.Downwards);
         }
 #endif
@@ -663,7 +661,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -677,7 +675,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -691,7 +689,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -705,7 +703,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -719,7 +717,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -733,7 +731,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -747,7 +745,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             if (page.Owner._uaManager != null)
                 page.Owner.Events.OnPageGraphicsCreated(page.Owner, new PageGraphicsEventArgs(page.Owner) { Page = page, Graphics = gfx, ActionType = PageGraphicsActionType.GraphicsCreated });  // @PDF/UA
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("PDF page");
 
             return gfx;
         }
@@ -762,7 +760,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
 
             var gfx = new XGraphics(form, form.Owner.RenderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("XPdfForm");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("XPdfForm");
 
             return gfx;
         }
@@ -777,7 +775,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
 
             var gfx = new XGraphics(form, form.Owner.RenderEvents);
 
-            PdfSharpLogHost.Logger.XGraphicsCreated("XForm");
+            // PdfSharpLogHost.Logger.XGraphicsCreated("XForm");
 
             return gfx;
         }
@@ -806,7 +804,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
                 image.XImageState = image.XImageState | XImageState.UsedInDrawingContext;
                 var gfx = new XGraphics(gdiGfx, new XSize(image.PixelWidth, image.PixelHeight), unit, XPageDirection.Downwards, renderEvents);
 
-                PdfSharpLogHost.Logger.XGraphicsCreated("XImage");
+                // PdfSharpLogHost.Logger.XGraphicsCreated("XImage");
 
                 return gfx;
 #endif
@@ -3636,7 +3634,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
                                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                                 if (test != y)
                                 {
-                                    PdfSharpLogHost.Logger.LogInformation($"DrawString XLineAlignment.Center: y={y} test={test}");
+                                    // PdfSharpLogHost.Logger.LogInformation($"DrawString XLineAlignment.Center: y={y} test={test}");
                                 }
 
 #endif
@@ -3750,7 +3748,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
             {
                 // We always need a target for RenderEvent.
                 // TODO: Check whether this can happen.
-                PdfSharpLogHost.FontManagementLogger.LogCritical(
+                // PdfSharpLogHost.FontManagementLogger.LogCritical(
                     "MeasureString could not invoke OnRenderTextEvent because we have no owning PDF document in the current context and no renderEvent parameter.");
                 throw new InvalidOperationException("No owning document or valid renderEvent.");
             }
@@ -4190,7 +4188,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
                         // srcRect is ignored - NYI
                         //double x = destRect.X;
                         //double y = destRect.Y;
-                        PdfSharpLogHost.Logger.LogWarning("DrawImage: srcRect is not used in WPF build.");
+                        // PdfSharpLogHost.Logger.LogWarning("DrawImage: srcRect is not used in WPF build.");
                         _dc.DrawImage(image._wpfImage, new SysRect(destRect.X, destRect.Y, destRect.Width, destRect.Height));
 
                         //if (!image.Interpolate)
@@ -5003,7 +5001,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
 #if GDI || WPF
             if (_drawGraphics)
             {
-                PdfSharpLogHost.Logger.LogDebug("WriteComment has no effect in GDI or WPF build.");
+                // PdfSharpLogHost.Logger.LogDebug("WriteComment has no effect in GDI or WPF build.");
             }
 #endif
             _renderer?.WriteComment(comment);
@@ -5039,7 +5037,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static GdiPointF[] MakePointFArray(GdiPoint[]? points, int offset, int count)
         {
             if (points == null)
-                return Array.Empty<GdiPointF>();
+                return [];
 
             //int length = points.Length;
             var result = new GdiPointF[count];
@@ -5059,7 +5057,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static GdiPointF[] MakePointFArray(XPoint[]? points)
         {
             if (points == null)
-                return Array.Empty<GdiPointF>();
+                return [];
 
             int count = points.Length;
             var result = new GdiPointF[count];
@@ -5079,7 +5077,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static XPoint[] MakeXPointArray(GdiPoint[]? points, int offset, int count)
         {
             if (points == null)
-                return Array.Empty<XPoint>();
+                return [];
 
             //int length = points.Length;
             var result = new XPoint[count];
@@ -5099,7 +5097,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static XPoint[] MakeXPointArray(SysPoint[] points, int offset, int count)
         {
             if (points == null)
-                return Array.Empty<XPoint>();
+                return [];
 
             //int length = points.Length;
             var result = new XPoint[count];
@@ -5119,7 +5117,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static XPoint[] MakeXPointArray(GdiPointF[]? points, int offset, int count)
         {
             if (points == null)
-                return Array.Empty<XPoint>();
+                return [];
 
             //int length = points.Length;
             var result = new XPoint[count];
@@ -5139,7 +5137,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static GdiRectF[] MakeRectangleFArray(XRect[]? rects, int offset, int count)
         {
             if (rects == null)
-                return Array.Empty<GdiRectF>();
+                return [];
 
             //int length = rects.Length;
             GdiRectF[] result = new GdiRectF[count];
@@ -5159,7 +5157,7 @@ namespace PdfSharp.Drawing  // #??? Clean up
         internal static SysPoint[] MakePointArray(XPoint[]? points)
         {
             if (points == null)
-                return Array.Empty<SysPoint>();
+                return [];
 
             int count = points.Length;
             SysPoint[] result = new SysPoint[count];

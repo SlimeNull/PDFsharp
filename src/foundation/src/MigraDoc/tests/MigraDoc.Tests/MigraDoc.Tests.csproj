@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\foundation\src\shared\src\PdfSharp.System\System\CompilerServices.cs" Link="CompilerServices.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Xunit.SkippableFact" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
   </ItemGroup>
@@ -40,6 +36,14 @@
     <ProjectReference Include="..\..\src\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj" />
     <ProjectReference Include="..\..\src\MigraDoc.Rendering\MigraDoc.Rendering.csproj" />
     <ProjectReference Include="..\..\src\MigraDoc.RtfRendering\MigraDoc.RtfRendering.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" />
   </ItemGroup>
 
 </Project>

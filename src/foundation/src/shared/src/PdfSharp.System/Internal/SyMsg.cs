@@ -5,8 +5,7 @@
 //#pragma warning disable 1591 // Because this is preview code.
 //// It should not be public.
 
-//using Microsoft.Extensions.Logging;
-
+//
 //namespace PdfSharp.Internal
 //{
 //    /// <summary>

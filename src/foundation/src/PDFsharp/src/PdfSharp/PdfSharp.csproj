@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>library</OutputType>
-    <TargetFrameworks>net6.0;net8.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;netstandard2.0;net45;net46;net462;net47;net48</TargetFrameworks>
     <!--<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>-->
     <RootNamespace>PdfSharp</RootNamespace>
     <DefineConstants>CORE</DefineConstants>
@@ -57,11 +57,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\shared\src\PdfSharp.System\System\CompilerServices.cs" Link="root\CompilerServices.cs" />
+    
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\sRGB2014.icc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Memory" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <PackageReference Include="System.ValueTuple" />
   </ItemGroup>
 
 </Project>

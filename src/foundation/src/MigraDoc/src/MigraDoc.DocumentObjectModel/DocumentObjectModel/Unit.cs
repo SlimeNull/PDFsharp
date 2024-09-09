@@ -25,7 +25,7 @@ namespace MigraDoc.DocumentObjectModel
         public Unit(double value, UnitType type)
         {
             if (!Enum.IsDefined(typeof(UnitType), type))
-                throw new /*InvalidEnum*/ArgumentException(MdDomMsgs.InvalidEnumValue(type).Message, nameof(type));
+                throw new /*InvalidEnum*/ArgumentException(MdDomMsgs.InvalidEnumValue(type), nameof(type));
 
             _value = (float)value;
             _type = type;
@@ -464,7 +464,7 @@ namespace MigraDoc.DocumentObjectModel
             }
             catch (FormatException ex)
             {
-                throw new ArgumentException(MdDomMsgs.InvalidUnitValue(value).Message, ex);
+                throw new ArgumentException(MdDomMsgs.InvalidUnitValue(value), ex);
             }
 
             var typeStr = value[valLen..].Trim().ToLower();
@@ -493,7 +493,7 @@ namespace MigraDoc.DocumentObjectModel
                     break;
 
                 default:
-                    throw new ArgumentException(MdDomMsgs.InvalidUnitType(typeStr).Message);
+                    throw new ArgumentException(MdDomMsgs.InvalidUnitType(typeStr));
             }
 
             return unit;
@@ -831,7 +831,7 @@ namespace MigraDoc.DocumentObjectModel
 
                 default:
                     if (!Enum.IsDefined(typeof(UnitType), type))
-                        throw new ArgumentException(MdDomMsgs.InvalidUnitType(type.ToString()).Message);
+                        throw new ArgumentException(MdDomMsgs.InvalidUnitType(type.ToString()));
 
                     // Remember missing unit type.
                     Debug.Assert(false, "Missing unit type.");

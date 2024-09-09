@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;net8.0-windows;net462</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net8.0-windows;net45;net46;net462;net47;net48</TargetFrameworks>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RootNamespace>PdfSharp.Quality</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
@@ -38,7 +38,6 @@
     <Compile Include="..\PdfSharp.Quality\PdfFileUtility.cs" Link="PdfFileUtility.cs" />
     <Compile Include="..\PdfSharp.Quality\Snippet.cs" Link="Snippet.cs" />
     <Compile Include="..\PdfSharp.Quality\TestClassBase.cs" Link="TestClassBase.cs" />
-    <Compile Include="..\PdfSharp.System\System\CompilerServices.cs" Link="CompilerServices.cs" />
   </ItemGroup>
   
   <ItemGroup>
@@ -46,6 +45,16 @@
     <ProjectReference Include="..\PdfSharp.System\PdfSharp.System.csproj" />
     <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp-gdi\PdfSharp-gdi.csproj" />
     <ProjectReference Include="..\PdfSharp.WPFonts\PdfSharp.WPFonts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Memory" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <PackageReference Include="System.ValueTuple" />
   </ItemGroup>
   
 </Project>
